@@ -42,11 +42,11 @@ export const Navbar = ({ onDark = true }: { onDark?: boolean }) => {
         <Image
           src="/dealio-logo.png"
           alt="Dealio"
-          width={1276}
-          height={1022}
+          width={1051}
+          height={322}
           priority
           style={{
-            height: 56,
+            height: 40,
             width: "auto",
             filter: onDark ? "brightness(0) invert(1)" : "none",
           }}

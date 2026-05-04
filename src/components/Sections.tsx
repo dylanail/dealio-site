@@ -223,10 +223,10 @@ export const Footer = () => (
           <Image
             src="/dealio-logo.png"
             alt="Dealio"
-            width={1276}
-            height={1022}
+            width={1051}
+            height={322}
             style={{
-              height: 56,
+              height: 44,
               width: "auto",
               filter: "brightness(0) invert(1)",
               alignSelf: "flex-start",
