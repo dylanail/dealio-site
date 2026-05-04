@@ -145,7 +145,7 @@ export const Eyebrow = ({ children, onDark }: { children: React.ReactNode; onDar
 
 export const Section = ({
   children,
-  bg = "var(--surface)",
+  bg,
   py = 96,
   style,
   id,
@@ -156,7 +156,16 @@ export const Section = ({
   style?: React.CSSProperties;
   id?: string;
 }) => (
-  <section id={id} style={{ background: bg, padding: `${py}px 52px`, ...style }}>
-    <div style={{ maxWidth: 1176, margin: "0 auto" }}>{children}</div>
+  <section
+    id={id}
+    className="section-pad section-y-pad"
+    style={{
+      background: bg ?? "transparent",
+      paddingTop: py,
+      paddingBottom: py,
+      ...style,
+    }}
+  >
+    <div className="section-inner">{children}</div>
   </section>
 );

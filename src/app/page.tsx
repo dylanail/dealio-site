@@ -7,7 +7,7 @@ import { AboutBlock, CTABand, Footer } from "@/components/Sections";
 
 export default function Home() {
   return (
-    <main style={{ maxWidth: 1280, margin: "0 auto", background: "#fff" }}>
+    <main className="page-wrap">
       <Hero />
       <AboutBlock />
       <Services />

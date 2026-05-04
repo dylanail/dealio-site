@@ -197,11 +197,9 @@ export const Pricing = () => (
     >
       <Eyebrow>Pricing</Eyebrow>
       <h2
+        className="h-section"
         style={{
           fontFamily: "var(--font-display)",
-          fontSize: 48,
-          lineHeight: "56px",
-          letterSpacing: "-0.06em",
           fontWeight: 500,
           color: "var(--text-1)",
           textAlign: "center",
@@ -226,13 +224,11 @@ export const Pricing = () => (
       </p>
     </div>
     <div
+      className="grid-2"
       style={{
         background: "var(--surface-2)",
         borderRadius: 24,
         padding: 12,
-        display: "grid",
-        gridTemplateColumns: "repeat(2, 1fr)",
-        gap: 12,
       }}
     >
       {plans.map((p) => (

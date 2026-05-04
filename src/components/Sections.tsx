@@ -32,22 +32,13 @@ const Stat = ({ label, value }: { label: string; value: string }) => (
 
 export const AboutBlock = () => (
   <Section py={96} id="about">
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        gap: 64,
-        alignItems: "center",
-      }}
-    >
+    <div className="grid-about">
       <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
         <Eyebrow>About Dealio</Eyebrow>
         <h2
+          className="h-section"
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: 48,
-            lineHeight: "56px",
-            letterSpacing: "-0.06em",
             fontWeight: 500,
             color: "var(--text-1)",
             margin: 0,
@@ -84,14 +75,33 @@ export const AboutBlock = () => (
       </div>
       <div
         style={{
+          minHeight: 360,
           height: 480,
           borderRadius: 24,
+          position: "relative",
+          overflow: "hidden",
           background:
             "linear-gradient(180deg, rgba(8,16,48,0) 0%, rgba(8,16,48,0.6) 100%), " +
             "linear-gradient(135deg, #3068F8 0%, #1F4FE0 50%, #081030 100%)",
           boxShadow: "var(--shadow-card-hover)",
         }}
-      />
+      >
+        <div
+          aria-hidden
+          style={{
+            position: "absolute",
+            inset: 0,
+            backgroundImage:
+              "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.16) 1px, transparent 0)",
+            backgroundSize: "22px 22px",
+            opacity: 0.5,
+            maskImage:
+              "radial-gradient(80% 80% at 50% 30%, black, transparent)",
+            WebkitMaskImage:
+              "radial-gradient(80% 80% at 50% 30%, black, transparent)",
+          }}
+        />
+      </div>
     </div>
   </Section>
 );
@@ -114,11 +124,9 @@ export const CTABand = () => (
     >
       <Eyebrow onDark>Ready when you are</Eyebrow>
       <h2
+        className="h-section"
         style={{
           fontFamily: "var(--font-display)",
-          fontSize: 48,
-          lineHeight: "56px",
-          letterSpacing: "-0.06em",
           fontWeight: 500,
           color: "#fff",
           maxWidth: 720,
@@ -139,7 +147,7 @@ export const CTABand = () => (
       >
         15-minute call. We&apos;ll quote you a per-lead price for your zip codes — or get you set up with done-for-you closing.
       </p>
-      <div style={{ display: "flex", gap: 12, marginTop: 8 }}>
+      <div className="stack-mobile" style={{ display: "flex", gap: 12, marginTop: 8, flexWrap: "wrap", justifyContent: "center" }}>
         <Button variant="primary" size="lg" href="https://calendly.com/dealio">
           BOOK A CALL
         </Button>
@@ -235,13 +243,7 @@ export const Footer = () => (
         gap: 40,
       }}
     >
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "2fr 1fr 1fr 1fr",
-          gap: 48,
-        }}
-      >
+      <div className="grid-footer">
         <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
           <Image
             src="/dealio-logo.png"
@@ -269,7 +271,7 @@ export const Footer = () => (
             Pay-per-lead acquisition for moving operators. Real customers,
             warmed and ready — and never sold twice.
           </p>
-          <div style={{ display: "flex", gap: 8, marginTop: 12 }}>
+          <div className="stack-mobile" style={{ display: "flex", gap: 8, marginTop: 12, flexWrap: "wrap" }}>
             <input
               type="email"
               placeholder="Your work email"
@@ -284,7 +286,8 @@ export const Footer = () => (
                 fontSize: 16,
                 outline: "none",
                 maxWidth: 260,
-                width: "100%",
+                flex: 1,
+                minWidth: 180,
                 letterSpacing: "-0.02em",
               }}
             />

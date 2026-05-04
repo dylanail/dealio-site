@@ -129,14 +129,7 @@ const FAQItem = ({ q, a }: { q: string; a: string }) => {
 
 export const FAQ = () => (
   <Section py={96} id="faq">
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "1fr 1.4fr",
-        gap: 80,
-        alignItems: "flex-start",
-      }}
-    >
+    <div className="grid-faq">
       <div
         style={{
           display: "flex",
@@ -148,11 +141,9 @@ export const FAQ = () => (
       >
         <Eyebrow>FAQ</Eyebrow>
         <h2
+          className="h-section"
           style={{
             fontFamily: "var(--font-display)",
-            fontSize: 48,
-            lineHeight: "56px",
-            letterSpacing: "-0.06em",
             fontWeight: 500,
             color: "var(--text-1)",
             margin: 0,

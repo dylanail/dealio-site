@@ -128,11 +128,9 @@ export const WhyDealio = () => (
     >
       <Eyebrow>Why Dealio</Eyebrow>
       <h2
+        className="h-section"
         style={{
           fontFamily: "var(--font-display)",
-          fontSize: 48,
-          lineHeight: "56px",
-          letterSpacing: "-0.06em",
           fontWeight: 500,
           color: "var(--text-1)",
           textAlign: "center",
@@ -156,13 +154,7 @@ export const WhyDealio = () => (
         We built Dealio because the way moving leads get bought and sold is broken. Here&apos;s how we&apos;re different.
       </p>
     </div>
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(4, 1fr)",
-        gap: 16,
-      }}
-    >
+    <div className="grid-4">
       {reasons.map((r, i) => (
         <ReasonCard key={r.title} {...r} index={i} />
       ))}
