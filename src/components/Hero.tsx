@@ -205,6 +205,104 @@ export const Hero = () => {
           }}
         />
 
+        {/* Geometric SVG layer */}
+        <svg
+          aria-hidden
+          viewBox="0 0 1600 1040"
+          preserveAspectRatio="xMidYMid slice"
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            pointerEvents: "none",
+          }}
+        >
+          <defs>
+            <linearGradient id="strokeGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stopColor="rgba(48,104,248,0.55)" />
+              <stop offset="100%" stopColor="rgba(48,104,248,0)" />
+            </linearGradient>
+            <radialGradient id="ringFade" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="rgba(48,104,248,0.45)" />
+              <stop offset="100%" stopColor="rgba(48,104,248,0)" />
+            </radialGradient>
+          </defs>
+
+          {/* Top-right radar arcs (sonar pulse feel) */}
+          <g transform="translate(1450, 80)" fill="none">
+            <circle r="100" stroke="rgba(48,104,248,0.30)" strokeWidth="1.2" />
+            <circle r="180" stroke="rgba(48,104,248,0.22)" strokeWidth="1.2" />
+            <circle r="280" stroke="rgba(48,104,248,0.16)" strokeWidth="1.2" />
+            <circle r="400" stroke="rgba(48,104,248,0.10)" strokeWidth="1.2" />
+            <circle r="540" stroke="rgba(48,104,248,0.06)" strokeWidth="1.2" />
+            <circle r="6" fill="rgba(48,104,248,0.7)" />
+          </g>
+
+          {/* Bottom-left counter arcs */}
+          <g transform="translate(80, 1080)" fill="none">
+            <circle r="160" stroke="rgba(255,255,255,0.06)" strokeWidth="1" />
+            <circle r="280" stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
+            <circle r="420" stroke="rgba(255,255,255,0.04)" strokeWidth="1" />
+            <circle r="580" stroke="rgba(255,255,255,0.03)" strokeWidth="1" />
+          </g>
+
+          {/* Floating hexagon outlines */}
+          <g fill="none" stroke="rgba(255,255,255,0.10)" strokeWidth="1.2">
+            <polygon points="200,180 248,154 296,180 296,232 248,258 200,232" />
+            <polygon
+              points="1280,860 1320,837 1360,860 1360,906 1320,929 1280,906"
+              stroke="rgba(48,104,248,0.28)"
+            />
+            <polygon
+              points="120,720 160,697 200,720 200,766 160,789 120,766"
+              stroke="rgba(255,255,255,0.08)"
+            />
+          </g>
+
+          {/* Small accent triangles */}
+          <g fill="none" stroke="rgba(48,104,248,0.4)" strokeWidth="1.2">
+            <polygon points="1080,200 1112,200 1096,228" />
+            <polygon points="380,820 402,820 391,840" stroke="rgba(255,255,255,0.18)" />
+          </g>
+
+          {/* Diagonal accent lines */}
+          <g stroke="url(#strokeGrad)" strokeWidth="1">
+            <line x1="0" y1="320" x2="320" y2="160" />
+            <line x1="1280" y1="980" x2="1600" y2="780" />
+          </g>
+
+          {/* Constellation dots */}
+          <g fill="rgba(255,255,255,0.55)">
+            <circle cx="640" cy="120" r="2" />
+            <circle cx="780" cy="180" r="1.5" />
+            <circle cx="920" cy="100" r="2.5" />
+            <circle cx="1060" cy="160" r="1.5" />
+            <circle cx="240" cy="540" r="2" />
+            <circle cx="380" cy="600" r="1.5" />
+            <circle cx="1380" cy="540" r="2" />
+            <circle cx="1240" cy="640" r="1.5" />
+          </g>
+          <g stroke="rgba(255,255,255,0.10)" strokeWidth="1" fill="none">
+            <line x1="640" y1="120" x2="780" y2="180" />
+            <line x1="780" y1="180" x2="920" y2="100" />
+            <line x1="920" y1="100" x2="1060" y2="160" />
+            <line x1="240" y1="540" x2="380" y2="600" />
+            <line x1="1380" y1="540" x2="1240" y2="640" />
+          </g>
+
+          {/* Big rotated square outline (depth element) */}
+          <g
+            fill="none"
+            stroke="rgba(48,104,248,0.12)"
+            strokeWidth="1"
+            transform="translate(800, 540) rotate(20)"
+          >
+            <rect x="-280" y="-280" width="560" height="560" />
+            <rect x="-200" y="-200" width="400" height="400" />
+          </g>
+        </svg>
+
         {/* Headline block */}
         <div
           className="section-pad"
@@ -262,7 +360,7 @@ export const Hero = () => {
             }}
           >
             <Link
-              href="#"
+              href="mailto:thedealioteam@gmail.com"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
@@ -284,9 +382,9 @@ export const Hero = () => {
                 whiteSpace: "nowrap",
               }}
             >
-              VIEW DEMO
+              EMAIL US
             </Link>
-            <Button variant="primary" size="lg" href="#contact">
+            <Button variant="primary" size="lg" href="mailto:thedealioteam@gmail.com">
               GET STARTED
             </Button>
           </div>
@@ -304,7 +402,7 @@ export const Hero = () => {
           heroBottom={heroBottom}
           label="Close rate"
           value="32%"
-          delta="↑ above industry avg"
+          delta="53% above industry avg"
         />
         <FloatingMetric
           leftPct={15}

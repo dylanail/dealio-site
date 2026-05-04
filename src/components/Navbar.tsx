@@ -77,7 +77,7 @@ export const Navbar = ({ onDark = true }: { onDark?: boolean }) => {
       </div>
 
       <div className="hide-mobile">
-        <Button variant="primary" size="md" href="#contact">
+        <Button variant="primary" size="md" href="mailto:thedealioteam@gmail.com">
           GET STARTED
         </Button>
       </div>
@@ -150,7 +150,7 @@ export const Navbar = ({ onDark = true }: { onDark?: boolean }) => {
             </Link>
           ))}
           <div style={{ marginTop: 8 }}>
-            <Button variant="primary" size="md" href="#contact">
+            <Button variant="primary" size="md" href="mailto:thedealioteam@gmail.com">
               GET STARTED
             </Button>
           </div>

@@ -176,7 +176,7 @@ const PlanCard = ({
     <Button
       variant={featured ? "primary" : "secondary"}
       size="md"
-      href="#contact"
+      href="mailto:thedealioteam@gmail.com"
       style={{ alignSelf: "stretch", justifyContent: "space-between" }}
     >
       {cta}

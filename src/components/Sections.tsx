@@ -123,32 +123,14 @@ export const CTABand = () => (
         15-minute call. We&apos;ll quote you a per-lead price for your zip codes — or get you set up with done-for-you closing.
       </p>
       <div className="stack-mobile" style={{ display: "flex", gap: 12, marginTop: 8, flexWrap: "wrap", justifyContent: "center" }}>
-        <Button variant="primary" size="lg" href="https://calendly.com/dealio">
-          BOOK A CALL
-        </Button>
-        <Link
-          href="mailto:hello@dealio.com"
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            justifyContent: "center",
-            height: 48,
-            padding: "4px 20px",
-            borderRadius: 999,
-            background: "rgba(8,16,48,0.25)",
-            color: "#fff",
-            backdropFilter: "blur(8px)",
-            WebkitBackdropFilter: "blur(8px)",
-            fontFamily: "var(--font-mono)",
-            fontWeight: 500,
-            fontSize: 14,
-            letterSpacing: "0.12em",
-            textTransform: "uppercase",
-            textDecoration: "none",
-          }}
+        <Button
+          variant="primary"
+          size="lg"
+          href="mailto:thedealioteam@gmail.com"
+          style={{ textTransform: "none", letterSpacing: "-0.005em", fontSize: 15 }}
         >
-          EMAIL US
-        </Link>
+          thedealioteam@gmail.com
+        </Button>
       </div>
     </div>
   </Section>
@@ -246,30 +228,36 @@ export const Footer = () => (
             Pay-per-lead acquisition for moving operators. Real customers,
             warmed and ready — and never sold twice.
           </p>
-          <div className="stack-mobile" style={{ display: "flex", gap: 8, marginTop: 12, flexWrap: "wrap" }}>
-            <input
-              type="email"
-              placeholder="Your work email"
+          <a
+            href="mailto:thedealioteam@gmail.com"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 10,
+              marginTop: 4,
+              fontFamily: "var(--font-mono)",
+              fontSize: 13,
+              letterSpacing: "0.04em",
+              color: "#fff",
+              textDecoration: "none",
+              padding: "10px 14px",
+              borderRadius: 999,
+              border: "1px solid rgba(255,255,255,0.18)",
+              background: "rgba(255,255,255,0.04)",
+              alignSelf: "flex-start",
+            }}
+          >
+            <span
               style={{
-                height: 48,
-                padding: "0 16px",
-                borderRadius: 12,
-                border: "1px solid rgba(255,255,255,0.12)",
-                background: "rgba(255,255,255,0.06)",
-                color: "#fff",
-                fontFamily: "var(--font-body)",
-                fontSize: 16,
-                outline: "none",
-                maxWidth: 260,
-                flex: 1,
-                minWidth: 180,
-                letterSpacing: "-0.02em",
+                width: 8,
+                height: 8,
+                borderRadius: 999,
+                background: "var(--brand-blue)",
+                boxShadow: "0 0 10px var(--brand-blue)",
               }}
             />
-            <Button variant="primary" size="md" href="#contact">
-              SUBMIT
-            </Button>
-          </div>
+            thedealioteam@gmail.com
+          </a>
         </div>
         <FooterCol
           title="Product"
@@ -284,8 +272,8 @@ export const Footer = () => (
           title="Company"
           links={[
             { label: "About", href: "#about" },
-            { label: "Contact", href: "#contact" },
-            { label: "Email us", href: "mailto:hello@dealio.com" },
+            { label: "Contact", href: "mailto:thedealioteam@gmail.com" },
+            { label: "Email us", href: "mailto:thedealioteam@gmail.com" },
           ]}
         />
         <FooterCol
