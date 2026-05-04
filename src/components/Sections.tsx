@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button, Eyebrow, Section } from "./Primitives";
+import { MovingScene } from "./MovingScene";
 
 const Stat = ({ label, value }: { label: string; value: string }) => (
   <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
@@ -73,34 +74,8 @@ export const AboutBlock = () => (
           <Stat label="Lead delivery" value="<10s" />
         </div>
       </div>
-      <div
-        style={{
-          minHeight: 360,
-          height: 480,
-          borderRadius: 24,
-          position: "relative",
-          overflow: "hidden",
-          background:
-            "linear-gradient(180deg, rgba(8,16,48,0) 0%, rgba(8,16,48,0.6) 100%), " +
-            "linear-gradient(135deg, #3068F8 0%, #1F4FE0 50%, #081030 100%)",
-          boxShadow: "var(--shadow-card-hover)",
-        }}
-      >
-        <div
-          aria-hidden
-          style={{
-            position: "absolute",
-            inset: 0,
-            backgroundImage:
-              "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.16) 1px, transparent 0)",
-            backgroundSize: "22px 22px",
-            opacity: 0.5,
-            maskImage:
-              "radial-gradient(80% 80% at 50% 30%, black, transparent)",
-            WebkitMaskImage:
-              "radial-gradient(80% 80% at 50% 30%, black, transparent)",
-          }}
-        />
+      <div style={{ height: 480 }}>
+        <MovingScene />
       </div>
     </div>
   </Section>
@@ -248,10 +223,10 @@ export const Footer = () => (
           <Image
             src="/dealio-logo.png"
             alt="Dealio"
-            width={120}
-            height={32}
+            width={1276}
+            height={1022}
             style={{
-              height: 32,
+              height: 56,
               width: "auto",
               filter: "brightness(0) invert(1)",
               alignSelf: "flex-start",

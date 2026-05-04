@@ -166,7 +166,7 @@ export const Hero = () => {
         className="hero-card"
         style={{
           position: "relative",
-          minHeight: 880,
+          minHeight: 1040,
           borderRadius: 24,
           overflow: "hidden",
           background:
@@ -214,8 +214,8 @@ export const Hero = () => {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            gap: 32,
-            paddingTop: 200,
+            gap: 28,
+            paddingTop: 160,
             paddingBottom: 40,
           }}
         >
@@ -295,7 +295,7 @@ export const Hero = () => {
         {/* Floating KPI cards — scroll-driven swing */}
         <FloatingMetric
           leftPct={50}
-          topPct={62}
+          topPct={74}
           baseRotate={-2}
           swingAxis={-14}
           parallaxSpeed={0.18}
@@ -307,8 +307,8 @@ export const Hero = () => {
           delta="↑ above industry avg"
         />
         <FloatingMetric
-          leftPct={14}
-          topPct={66}
+          leftPct={15}
+          topPct={78}
           baseRotate={3}
           swingAxis={20}
           parallaxSpeed={0.30}
@@ -321,8 +321,8 @@ export const Hero = () => {
           dark
         />
         <FloatingMetric
-          leftPct={86}
-          topPct={64}
+          leftPct={85}
+          topPct={76}
           baseRotate={-3}
           swingAxis={-20}
           parallaxSpeed={0.24}
