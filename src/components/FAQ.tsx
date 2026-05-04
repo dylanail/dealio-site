@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Eyebrow, Section } from "./Primitives";
+import { Reveal } from "./Reveal";
 
 const faqs = [
   {
@@ -164,8 +165,10 @@ export const FAQ = () => (
         </p>
       </div>
       <div>
-        {faqs.map((f) => (
-          <FAQItem key={f.q} {...f} />
+        {faqs.map((f, i) => (
+          <Reveal key={f.q} delay={i * 80} distance={20}>
+            <FAQItem {...f} />
+          </Reveal>
         ))}
       </div>
     </div>

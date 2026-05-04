@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button, Eyebrow, Section } from "./Primitives";
 import { MovingScene } from "./MovingScene";
+import { Reveal } from "./Reveal";
 
 const Stat = ({ label, value }: { label: string; value: string }) => (
   <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
@@ -69,9 +70,9 @@ export const AboutBlock = () => (
             marginTop: 16,
           }}
         >
-          <Stat label="Avg close rate" value="32%" />
-          <Stat label="Avg job value" value="$1,248" />
-          <Stat label="Lead delivery" value="<10s" />
+          <Reveal delay={0} distance={20}><Stat label="Avg close rate" value="32%" /></Reveal>
+          <Reveal delay={120} distance={20}><Stat label="Avg job value" value="$1,248" /></Reveal>
+          <Reveal delay={240} distance={20}><Stat label="Lead delivery" value="<10s" /></Reveal>
         </div>
       </div>
       <div style={{ height: 480 }}>

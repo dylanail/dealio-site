@@ -1,4 +1,5 @@
 import { Eyebrow, Section } from "./Primitives";
+import { Reveal } from "./Reveal";
 
 const reasons = [
   {
@@ -50,6 +51,8 @@ const ReasonCard = ({
       flexDirection: "column",
       gap: 20,
       minHeight: 220,
+      flex: 1,
+      width: "100%",
     }}
   >
     <div
@@ -156,7 +159,9 @@ export const WhyDealio = () => (
     </div>
     <div className="grid-4">
       {reasons.map((r, i) => (
-        <ReasonCard key={r.title} {...r} index={i} />
+        <Reveal key={r.title} delay={i * 110}>
+          <ReasonCard {...r} index={i} />
+        </Reveal>
       ))}
     </div>
   </Section>

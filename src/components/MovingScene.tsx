@@ -1,270 +1,442 @@
-// Stylized SVG illustration — moving truck silhouette over brand gradient.
-// Designed to fill the About section image placeholder. Replace with a real
-// photograph by dropping a JPG into /public and swapping the <Image>.
+"use client";
 
-export const MovingScene = () => (
-  <div
-    style={{
-      position: "relative",
-      width: "100%",
-      height: "100%",
-      minHeight: 360,
-      borderRadius: 24,
-      overflow: "hidden",
-      background:
-        "linear-gradient(135deg, #4A7BFF 0%, #3068F8 32%, #1F4FE0 60%, #0E1A3D 100%)",
-      boxShadow: "var(--shadow-card-hover)",
-    }}
-  >
-    {/* Dotted grid backdrop */}
+import { useState, useEffect, useRef } from "react";
+
+// Stylized SVG illustration — moving truck driving across, scroll-linked.
+// Replace with a real photograph by dropping a JPG into /public.
+
+export const MovingScene = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    let raf = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        if (!ref.current) return;
+        const rect = ref.current.getBoundingClientRect();
+        const vh = window.innerHeight;
+        // 0 when section just entered bottom of viewport,
+        // 1 when section just exited top of viewport
+        const total = vh + rect.height;
+        const traveled = vh - rect.top;
+        setProgress(Math.max(-0.2, Math.min(1.2, traveled / total)));
+      });
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
+
+  // Truck enters from left (x=-260) and exits right (x=+260)
+  const truckX = -260 + progress * 520;
+  // Wheels rotate as truck "drives" — 1080deg over the full traverse
+  const wheelRotation = progress * 1080;
+  // Subtle vertical bobble simulating road
+  const bobble = Math.sin(progress * 18) * 1.5;
+
+  return (
     <div
-      aria-hidden
+      ref={ref}
       style={{
-        position: "absolute",
-        inset: 0,
-        backgroundImage:
-          "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.18) 1px, transparent 0)",
-        backgroundSize: "22px 22px",
-        opacity: 0.55,
-        maskImage:
-          "radial-gradient(80% 80% at 50% 30%, black 50%, transparent)",
-        WebkitMaskImage:
-          "radial-gradient(80% 80% at 50% 30%, black 50%, transparent)",
-      }}
-    />
-
-    {/* Glow accents */}
-    <div
-      aria-hidden
-      style={{
-        position: "absolute",
-        inset: 0,
-        backgroundImage:
-          "radial-gradient(40% 30% at 80% 20%, rgba(255,255,255,0.12), transparent 60%)," +
-          "radial-gradient(50% 40% at 20% 80%, rgba(8,16,48,0.4), transparent 70%)",
-      }}
-    />
-
-    {/* Sun line at horizon */}
-    <div
-      aria-hidden
-      style={{
-        position: "absolute",
-        left: "8%",
-        right: "8%",
-        bottom: "32%",
-        height: 1,
-        background:
-          "linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent)",
-      }}
-    />
-
-    {/* Truck silhouette */}
-    <svg
-      viewBox="0 0 600 400"
-      preserveAspectRatio="xMidYMax meet"
-      style={{
-        position: "absolute",
-        bottom: 0,
-        left: 0,
-        right: 0,
+        position: "relative",
         width: "100%",
-        height: "70%",
+        height: "100%",
+        minHeight: 360,
+        borderRadius: 24,
+        overflow: "hidden",
+        background:
+          "linear-gradient(180deg, #4A7BFF 0%, #3068F8 28%, #1F4FE0 58%, #0E1A3D 100%)",
+        boxShadow: "var(--shadow-card-hover)",
       }}
-      aria-hidden
     >
-      {/* Ground line */}
-      <line
-        x1="0"
-        y1="320"
-        x2="600"
-        y2="320"
-        stroke="rgba(255,255,255,0.18)"
-        strokeWidth="1"
-        strokeDasharray="4 6"
+      {/* Dotted grid backdrop */}
+      <div
+        aria-hidden
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage:
+            "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.18) 1px, transparent 0)",
+          backgroundSize: "22px 22px",
+          opacity: 0.55,
+          maskImage:
+            "radial-gradient(80% 80% at 50% 30%, black 50%, transparent)",
+          WebkitMaskImage:
+            "radial-gradient(80% 80% at 50% 30%, black 50%, transparent)",
+        }}
       />
 
-      {/* Truck shadow */}
-      <ellipse
-        cx="300"
-        cy="328"
-        rx="190"
-        ry="6"
-        fill="rgba(0,0,0,0.3)"
+      {/* Sky glow + horizon */}
+      <div
+        aria-hidden
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage:
+            "radial-gradient(50% 35% at 80% 25%, rgba(255,255,255,0.18), transparent 60%)," +
+            "radial-gradient(60% 40% at 20% 80%, rgba(8,16,48,0.45), transparent 70%)",
+        }}
       />
 
-      {/* Truck body — box */}
-      <g>
-        {/* Cargo box */}
-        <rect
-          x="180"
-          y="170"
-          width="220"
-          height="140"
-          rx="8"
-          fill="#FFFFFF"
+      {/* Truck scene SVG */}
+      <svg
+        viewBox="0 0 600 400"
+        preserveAspectRatio="xMidYMax meet"
+        style={{
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          width: "100%",
+          height: "78%",
+        }}
+        aria-hidden
+      >
+        {/* Road surface */}
+        <line
+          x1="0"
+          y1="335"
+          x2="600"
+          y2="335"
+          stroke="rgba(255,255,255,0.35)"
+          strokeWidth="1.5"
         />
-        <rect
-          x="180"
-          y="170"
-          width="220"
-          height="140"
-          rx="8"
-          fill="url(#truckShade)"
-        />
-
-        {/* Box panel detail lines */}
-        <line x1="252" y1="178" x2="252" y2="305" stroke="rgba(8,16,48,0.18)" strokeWidth="1.5"/>
-        <line x1="324" y1="178" x2="324" y2="305" stroke="rgba(8,16,48,0.18)" strokeWidth="1.5"/>
-
-        {/* Door handle line */}
-        <rect x="284" y="220" width="24" height="40" rx="3" fill="none" stroke="rgba(8,16,48,0.25)" strokeWidth="1.5"/>
-
-        {/* "DEALIO" label on truck */}
-        <text
-          x="290"
-          y="200"
-          textAnchor="middle"
-          fontFamily="Plus Jakarta Sans, system-ui"
-          fontSize="13"
-          fontWeight="800"
-          fill="#3068F8"
-          letterSpacing="2"
+        {/* Road dashes — also drift to suggest motion */}
+        <g
+          transform={`translate(${(progress * 80) % 60}, 0)`}
+          stroke="rgba(255,255,255,0.55)"
+          strokeWidth="2.5"
+          strokeLinecap="round"
         >
-          DEALIO
-        </text>
+          <line x1="-20" y1="335" x2="0" y2="335" />
+          <line x1="40" y1="335" x2="60" y2="335" />
+          <line x1="100" y1="335" x2="120" y2="335" />
+          <line x1="160" y1="335" x2="180" y2="335" />
+          <line x1="220" y1="335" x2="240" y2="335" />
+          <line x1="280" y1="335" x2="300" y2="335" />
+          <line x1="340" y1="335" x2="360" y2="335" />
+          <line x1="400" y1="335" x2="420" y2="335" />
+          <line x1="460" y1="335" x2="480" y2="335" />
+          <line x1="520" y1="335" x2="540" y2="335" />
+          <line x1="580" y1="335" x2="600" y2="335" />
+        </g>
 
-        {/* Cab */}
-        <path
-          d="M400 200 L460 200 L490 230 L490 310 L400 310 Z"
-          fill="#081030"
-        />
-        {/* Cab window */}
-        <path
-          d="M410 210 L460 210 L478 230 L410 230 Z"
-          fill="#3068F8"
-          opacity="0.9"
-        />
-        {/* Cab highlight */}
-        <path
-          d="M410 210 L424 210 L424 230 L410 230 Z"
-          fill="rgba(255,255,255,0.5)"
-        />
+        {/* TRUCK GROUP — translates with scroll */}
+        <g transform={`translate(${truckX}, ${bobble})`}>
+          {/* Shadow */}
+          <ellipse
+            cx="280"
+            cy="338"
+            rx="220"
+            ry="6"
+            fill="rgba(0,0,0,0.32)"
+          />
 
-        {/* Wheels */}
-        <circle cx="225" cy="312" r="22" fill="#081030"/>
-        <circle cx="225" cy="312" r="10" fill="#2A3357"/>
-        <circle cx="225" cy="312" r="3" fill="#FFFFFF"/>
+          {/* CARGO BOX — large white container with door */}
+          <g>
+            {/* Box body */}
+            <rect
+              x="60"
+              y="170"
+              width="320"
+              height="155"
+              rx="6"
+              fill="#FFFFFF"
+            />
+            {/* Top edge shadow */}
+            <rect
+              x="60"
+              y="170"
+              width="320"
+              height="155"
+              rx="6"
+              fill="url(#boxShade)"
+            />
+            {/* Roll-up door at the back */}
+            <rect
+              x="68"
+              y="180"
+              width="58"
+              height="138"
+              rx="3"
+              fill="#F0F2F8"
+              stroke="rgba(8,16,48,0.18)"
+              strokeWidth="1"
+            />
+            {/* Door horizontal slats */}
+            <g stroke="rgba(8,16,48,0.13)" strokeWidth="1">
+              <line x1="68" y1="195" x2="126" y2="195" />
+              <line x1="68" y1="208" x2="126" y2="208" />
+              <line x1="68" y1="221" x2="126" y2="221" />
+              <line x1="68" y1="234" x2="126" y2="234" />
+              <line x1="68" y1="247" x2="126" y2="247" />
+              <line x1="68" y1="260" x2="126" y2="260" />
+              <line x1="68" y1="273" x2="126" y2="273" />
+              <line x1="68" y1="286" x2="126" y2="286" />
+              <line x1="68" y1="299" x2="126" y2="299" />
+            </g>
+            {/* Door handle */}
+            <rect
+              x="89"
+              y="305"
+              width="16"
+              height="6"
+              rx="2"
+              fill="rgba(8,16,48,0.4)"
+            />
 
-        <circle cx="355" cy="312" r="22" fill="#081030"/>
-        <circle cx="355" cy="312" r="10" fill="#2A3357"/>
-        <circle cx="355" cy="312" r="3" fill="#FFFFFF"/>
+            {/* Side panel divider lines */}
+            <line
+              x1="200"
+              y1="178"
+              x2="200"
+              y2="320"
+              stroke="rgba(8,16,48,0.10)"
+              strokeWidth="1"
+            />
+            <line
+              x1="290"
+              y1="178"
+              x2="290"
+              y2="320"
+              stroke="rgba(8,16,48,0.10)"
+              strokeWidth="1"
+            />
 
-        <circle cx="455" cy="312" r="22" fill="#081030"/>
-        <circle cx="455" cy="312" r="10" fill="#2A3357"/>
-        <circle cx="455" cy="312" r="3" fill="#FFFFFF"/>
-      </g>
+            {/* DEALIO branding on side */}
+            <text
+              x="240"
+              y="237"
+              textAnchor="middle"
+              fontFamily="Plus Jakarta Sans, system-ui"
+              fontSize="22"
+              fontWeight="800"
+              fill="#3068F8"
+              letterSpacing="1"
+            >
+              dealio
+            </text>
+            {/* Tagline below */}
+            <text
+              x="240"
+              y="258"
+              textAnchor="middle"
+              fontFamily="Geist Mono, ui-monospace"
+              fontSize="7"
+              fontWeight="500"
+              fill="rgba(8,16,48,0.55)"
+              letterSpacing="1.5"
+            >
+              MOVING — DONE RIGHT
+            </text>
 
-      {/* Boxes stacked behind */}
-      <g opacity="0.85">
-        {/* Tall stack */}
-        <rect x="80" y="248" width="64" height="62" rx="3" fill="#1A2342"/>
-        <rect x="80" y="200" width="64" height="48" rx="3" fill="#0E1A3D"/>
-        <line x1="80" y1="220" x2="144" y2="220" stroke="rgba(255,255,255,0.1)" strokeWidth="1"/>
-        <line x1="112" y1="200" x2="112" y2="248" stroke="rgba(255,255,255,0.1)" strokeWidth="1"/>
+            {/* Vent strip on side */}
+            <rect
+              x="140"
+              y="186"
+              width="40"
+              height="6"
+              rx="2"
+              fill="rgba(8,16,48,0.10)"
+            />
+          </g>
 
-        {/* Smaller box */}
-        <rect x="500" y="270" width="56" height="40" rx="3" fill="#0E1A3D"/>
-        <line x1="528" y1="270" x2="528" y2="310" stroke="rgba(255,255,255,0.08)" strokeWidth="1"/>
-      </g>
+          {/* CAB — front of truck */}
+          <g>
+            {/* Cab body */}
+            <path
+              d="M380 198 L455 198 Q470 198 472 212 L478 235 L478 325 L380 325 Z"
+              fill="#081030"
+            />
+            {/* Windshield */}
+            <path
+              d="M390 208 L450 208 Q458 208 462 222 L466 232 L390 232 Z"
+              fill="#3068F8"
+              opacity="0.95"
+            />
+            {/* Windshield highlight */}
+            <path
+              d="M390 208 L408 208 L408 232 L390 232 Z"
+              fill="rgba(255,255,255,0.45)"
+            />
+            {/* Door seam */}
+            <line
+              x1="425"
+              y1="232"
+              x2="425"
+              y2="320"
+              stroke="rgba(255,255,255,0.10)"
+              strokeWidth="1"
+            />
+            {/* Side door handle */}
+            <rect
+              x="438"
+              y="265"
+              width="14"
+              height="3"
+              rx="1.5"
+              fill="rgba(255,255,255,0.5)"
+            />
+            {/* Headlight */}
+            <rect
+              x="468"
+              y="278"
+              width="10"
+              height="14"
+              rx="2"
+              fill="rgba(255,240,180,0.95)"
+            />
+            {/* Side mirror */}
+            <rect
+              x="383"
+              y="225"
+              width="6"
+              height="14"
+              rx="1"
+              fill="#081030"
+            />
+            <line
+              x1="389"
+              y1="232"
+              x2="395"
+              y2="232"
+              stroke="#081030"
+              strokeWidth="1.5"
+            />
+            {/* Bumper */}
+            <rect
+              x="465"
+              y="320"
+              width="14"
+              height="8"
+              rx="2"
+              fill="rgba(255,255,255,0.18)"
+            />
+          </g>
 
-      <defs>
-        <linearGradient id="truckShade" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="rgba(255,255,255,0)"/>
-          <stop offset="100%" stopColor="rgba(8,16,48,0.12)"/>
-        </linearGradient>
-      </defs>
-    </svg>
+          {/* WHEELS — only 2, large, with rotating spokes */}
+          {/* Rear wheel under cargo box */}
+          <g
+            transform={`translate(140, 325) rotate(${wheelRotation})`}
+          >
+            <circle r="28" fill="#0A0F22" />
+            <circle r="22" fill="#1A2342" />
+            <circle r="8" fill="#2A3357" stroke="#FFFFFF" strokeWidth="1" />
+            {/* Spokes */}
+            <line x1="-22" y1="0" x2="22" y2="0" stroke="rgba(255,255,255,0.5)" strokeWidth="2" strokeLinecap="round" />
+            <line x1="0" y1="-22" x2="0" y2="22" stroke="rgba(255,255,255,0.5)" strokeWidth="2" strokeLinecap="round" />
+            <line x1="-15.5" y1="-15.5" x2="15.5" y2="15.5" stroke="rgba(255,255,255,0.35)" strokeWidth="1.5" strokeLinecap="round" />
+            <line x1="-15.5" y1="15.5" x2="15.5" y2="-15.5" stroke="rgba(255,255,255,0.35)" strokeWidth="1.5" strokeLinecap="round" />
+          </g>
 
-    {/* Floating "live" pill — adds product-feel hint */}
-    <div
-      style={{
-        position: "absolute",
-        top: 28,
-        left: 28,
-        display: "inline-flex",
-        alignItems: "center",
-        gap: 8,
-        padding: "8px 14px",
-        borderRadius: 999,
-        background: "rgba(8,16,48,0.55)",
-        border: "1px solid rgba(255,255,255,0.14)",
-        backdropFilter: "blur(12px)",
-        WebkitBackdropFilter: "blur(12px)",
-      }}
-    >
-      <span
+          {/* Front wheel under cab */}
+          <g
+            transform={`translate(440, 325) rotate(${wheelRotation})`}
+          >
+            <circle r="28" fill="#0A0F22" />
+            <circle r="22" fill="#1A2342" />
+            <circle r="8" fill="#2A3357" stroke="#FFFFFF" strokeWidth="1" />
+            <line x1="-22" y1="0" x2="22" y2="0" stroke="rgba(255,255,255,0.5)" strokeWidth="2" strokeLinecap="round" />
+            <line x1="0" y1="-22" x2="0" y2="22" stroke="rgba(255,255,255,0.5)" strokeWidth="2" strokeLinecap="round" />
+            <line x1="-15.5" y1="-15.5" x2="15.5" y2="15.5" stroke="rgba(255,255,255,0.35)" strokeWidth="1.5" strokeLinecap="round" />
+            <line x1="-15.5" y1="15.5" x2="15.5" y2="-15.5" stroke="rgba(255,255,255,0.35)" strokeWidth="1.5" strokeLinecap="round" />
+          </g>
+        </g>
+
+        <defs>
+          <linearGradient id="boxShade" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="rgba(8,16,48,0.06)" />
+            <stop offset="20%" stopColor="rgba(255,255,255,0)" />
+            <stop offset="100%" stopColor="rgba(8,16,48,0.10)" />
+          </linearGradient>
+        </defs>
+      </svg>
+
+      {/* Floating "live" pill */}
+      <div
         style={{
-          width: 8,
-          height: 8,
+          position: "absolute",
+          top: 28,
+          left: 28,
+          display: "inline-flex",
+          alignItems: "center",
+          gap: 8,
+          padding: "8px 14px",
           borderRadius: 999,
-          background: "#3DF06E",
-          boxShadow: "0 0 12px #3DF06E",
-        }}
-      />
-      <span
-        style={{
-          fontFamily: "var(--font-mono)",
-          fontSize: 11,
-          letterSpacing: "0.14em",
-          textTransform: "uppercase",
-          color: "#fff",
-          fontWeight: 500,
+          background: "rgba(8,16,48,0.55)",
+          border: "1px solid rgba(255,255,255,0.14)",
+          backdropFilter: "blur(12px)",
+          WebkitBackdropFilter: "blur(12px)",
         }}
       >
-        Routing leads — live
-      </span>
-    </div>
+        <span
+          style={{
+            width: 8,
+            height: 8,
+            borderRadius: 999,
+            background: "#3DF06E",
+            boxShadow: "0 0 12px #3DF06E",
+          }}
+        />
+        <span
+          style={{
+            fontFamily: "var(--font-mono)",
+            fontSize: 11,
+            letterSpacing: "0.14em",
+            textTransform: "uppercase",
+            color: "#fff",
+            fontWeight: 500,
+          }}
+        >
+          Routing leads — live
+        </span>
+      </div>
 
-    {/* Floating mini-stat */}
-    <div
-      style={{
-        position: "absolute",
-        top: 28,
-        right: 28,
-        padding: "12px 16px",
-        borderRadius: 14,
-        background: "rgba(255,255,255,0.95)",
-        backdropFilter: "blur(12px)",
-        WebkitBackdropFilter: "blur(12px)",
-        boxShadow: "0 12px 28px rgba(0,0,0,0.18)",
-        textAlign: "right",
-      }}
-    >
+      {/* Floating mini-stat */}
       <div
         style={{
-          fontFamily: "var(--font-mono)",
-          fontSize: 10,
-          letterSpacing: "0.14em",
-          textTransform: "uppercase",
-          color: "var(--text-2)",
-          fontWeight: 500,
+          position: "absolute",
+          top: 28,
+          right: 28,
+          padding: "12px 16px",
+          borderRadius: 14,
+          background: "rgba(255,255,255,0.95)",
+          backdropFilter: "blur(12px)",
+          WebkitBackdropFilter: "blur(12px)",
+          boxShadow: "0 12px 28px rgba(0,0,0,0.18)",
+          textAlign: "right",
         }}
       >
-        Last lead
-      </div>
-      <div
-        style={{
-          fontFamily: "var(--font-display)",
-          fontWeight: 700,
-          fontSize: 22,
-          letterSpacing: "-0.04em",
-          color: "var(--ink)",
-          marginTop: 2,
-        }}
-      >
-        7 sec ago
+        <div
+          style={{
+            fontFamily: "var(--font-mono)",
+            fontSize: 10,
+            letterSpacing: "0.14em",
+            textTransform: "uppercase",
+            color: "var(--text-2)",
+            fontWeight: 500,
+          }}
+        >
+          Last lead
+        </div>
+        <div
+          style={{
+            fontFamily: "var(--font-display)",
+            fontWeight: 700,
+            fontSize: 22,
+            letterSpacing: "-0.04em",
+            color: "var(--ink)",
+            marginTop: 2,
+          }}
+        >
+          7 sec ago
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};

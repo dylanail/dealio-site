@@ -1,4 +1,5 @@
 import { Button, Eyebrow, Section } from "./Primitives";
+import { Reveal } from "./Reveal";
 
 const plans = [
   {
@@ -66,6 +67,8 @@ const PlanCard = ({
       flexDirection: "column",
       gap: 28,
       minHeight: 480,
+      flex: 1,
+      width: "100%",
     }}
   >
     {badge && (
@@ -231,8 +234,10 @@ export const Pricing = () => (
         padding: 12,
       }}
     >
-      {plans.map((p) => (
-        <PlanCard key={p.name} {...p} />
+      {plans.map((p, i) => (
+        <Reveal key={p.name} delay={i * 160}>
+          <PlanCard {...p} />
+        </Reveal>
       ))}
     </div>
   </Section>

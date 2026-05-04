@@ -1,4 +1,5 @@
 import { Eyebrow, Section } from "./Primitives";
+import { Reveal } from "./Reveal";
 
 const services = [
   {
@@ -51,6 +52,8 @@ const ServiceCard = ({
       flexDirection: "column",
       gap: 80,
       minHeight: 300,
+      flex: 1,
+      width: "100%",
     }}
   >
     <div
@@ -144,7 +147,9 @@ export const Services = () => (
       }}
     >
       {services.map((s, i) => (
-        <ServiceCard key={i} {...s} />
+        <Reveal key={i} delay={i * 140}>
+          <ServiceCard {...s} />
+        </Reveal>
       ))}
     </div>
   </Section>
