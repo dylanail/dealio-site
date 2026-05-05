@@ -18,14 +18,14 @@ const plans = [
   },
   {
     name: "Done-for-you closing",
-    pitch: "10%",
-    sub: "Of booked job revenue",
-    desc: "Pilot program. Our team handles every call, qualifies, and books the job onto your calendar. You only pay when revenue lands.",
+    pitch: "Custom",
+    sub: "Performance-based fee",
+    desc: "Pilot program. Our team handles every call, qualifies, and books the job onto your calendar. Pricing tailored to your volume and ticket size.",
     features: [
       "Includes everything in Pay per lead",
       "Our closers handle every call",
       "Booking on your calendar",
-      "No charge until the job books",
+      "Performance-based, quoted per operator",
     ],
     cta: "JOIN THE PILOT",
     featured: true,

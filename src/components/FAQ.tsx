@@ -15,7 +15,7 @@ const faqs = [
   },
   {
     q: "Do I have to use the closing service?",
-    a: "No. Done-for-you closing is optional. Most operators start with leads-only and try the closing service later. When you do, it's 10% of booked job revenue — and only on jobs we book for you.",
+    a: "No. Done-for-you closing is optional and pricing is tailored per operator — performance-based, no monthly fees. Most operators start with leads-only and add the closing service later.",
   },
   {
     q: "What's your policy on bad-quality or invalid leads?",

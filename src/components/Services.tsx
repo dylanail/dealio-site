@@ -29,7 +29,7 @@ const services = [
       </svg>
     ),
     title: "Done-for-you closing (optional)",
-    desc: "Want us to handle the call too? Our team takes the lead from first contact to booked job. 10% of booked job revenue — pure performance fee.",
+    desc: "Want us to handle the call too? Our team takes the lead from first contact to booked job — performance-based pricing, quoted per operator.",
   },
 ];
 
