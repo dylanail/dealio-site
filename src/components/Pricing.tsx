@@ -8,7 +8,7 @@ const plans = [
     sub: "Quoted by market",
     desc: "Multi-channel acquisition with AI-warmed leads delivered to your phone in under 10 seconds. Transparent flat per-lead pricing.",
     features: [
-      "Exclusive to your service area",
+      "Every lead sold once — never shared",
       "Fresh leads in <10 seconds",
       "AI-warmed before they call",
       "No retainers, no setup fees",

@@ -60,8 +60,8 @@ export const AboutBlock = () => (
           We started Dealio after a decade of running and selling moving
           businesses ourselves. We were tired of agencies promising the moon and
           delivering form fills. So we built the system we always wanted:
-          per-lead pricing, exclusive territories, and never share leads with
-          anyone else.
+          per-lead pricing, exclusive leads sold once, and zero shared
+          marketplaces.
         </p>
         <div
           style={{

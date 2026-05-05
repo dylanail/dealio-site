@@ -30,8 +30,8 @@ const faqs = [
     a: "Most markets go live within 7 to 10 days of contract. We confirm coverage, set your spend cap, and route the first leads to your number.",
   },
   {
-    q: "Are the leads exclusive to my service area?",
-    a: "Yes. We carve territories by zip code and lock them down. No other Dealio operator gets leads from inside your protected market.",
+    q: "Are leads shared with my competitors?",
+    a: "No. Every Dealio lead is sold to exactly one operator. When a customer fills out our form, you're the only mover who gets that contact — no shared marketplace, no auction, no second buyer.",
   },
 ];
 
