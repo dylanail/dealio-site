@@ -4,12 +4,12 @@ import { Reveal } from "./Reveal";
 const plans = [
   {
     name: "Pay per lead",
-    pitch: "Per booked lead",
+    pitch: "Per lead",
     sub: "Quoted by market",
-    desc: "Multi-channel acquisition, AI-warmed leads delivered to your phone. You only pay when a real customer is on the line.",
+    desc: "Multi-channel acquisition with AI-warmed leads delivered to your phone in under 10 seconds. Transparent flat per-lead pricing.",
     features: [
       "Exclusive to your service area",
-      "Pay only for booked leads",
+      "Fresh leads in <10 seconds",
       "AI-warmed before they call",
       "No retainers, no setup fees",
     ],

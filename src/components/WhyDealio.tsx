@@ -4,15 +4,15 @@ import { Reveal } from "./Reveal";
 const reasons = [
   {
     title: "No retainers",
-    desc: "Zero monthly fees, zero setup. You pay per booked lead — nothing more, nothing less.",
+    desc: "Zero monthly fees, zero setup. Pay per lead — no contracts, no surprises.",
   },
   {
     title: "No shared marketplaces",
     desc: "Every lead is yours alone. We never sell the same contact to a competitor down the street.",
   },
   {
-    title: "Pay only when it counts",
-    desc: "Lead doesn't pick up? Doesn't book? You don't pay. We bear the acquisition risk, not you.",
+    title: "Speed wins",
+    desc: "Fresh leads in under 10 seconds. Aged leads convert 10× worse — we route them to you while they're still hot.",
   },
   {
     title: "Built for moving",

@@ -18,8 +18,8 @@ const faqs = [
     a: "No. Done-for-you closing is optional. Most operators start with leads-only and try the closing service later. When you do, it's 10% of booked job revenue — and only on jobs we book for you.",
   },
   {
-    q: "What if a lead doesn't answer the phone or doesn't book?",
-    a: "Then you don't pay. We charge per booked lead, not per form fill. The acquisition risk sits with us, not you.",
+    q: "What's your policy on bad-quality or invalid leads?",
+    a: "Clearly invalid leads — wrong number, outside your service area, duplicate, or fake submissions — are credited within 48 hours. Aggressive screening before delivery means very few make it through. Your job is closing; ours is delivering qualified prospects.",
   },
   {
     q: "How fast do leads actually reach me after they fill out the form?",

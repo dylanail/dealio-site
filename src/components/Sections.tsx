@@ -59,8 +59,9 @@ export const AboutBlock = () => (
         >
           We started Dealio after a decade of running and selling moving
           businesses ourselves. We were tired of agencies promising the moon and
-          delivering form fills. So we built the system we always wanted: pay
-          only for booked work, and never share leads with anyone else.
+          delivering form fills. So we built the system we always wanted:
+          per-lead pricing, exclusive territories, and never share leads with
+          anyone else.
         </p>
         <div
           style={{
