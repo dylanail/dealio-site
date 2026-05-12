@@ -148,9 +148,66 @@ body {
   .h-section { font-size: 36px; line-height: 42px; letter-spacing: -0.05em; }
 }
 
+/* Long-form legal/marketing prose */
+.legal-prose {
+  font-family: var(--font-body);
+  color: var(--text-1);
+  font-size: 16px;
+  line-height: 26px;
+  letter-spacing: -0.01em;
+}
+.legal-prose h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 30px;
+  letter-spacing: -0.03em;
+  margin: 40px 0 12px;
+  color: var(--text-1);
+}
+.legal-prose h2:first-child { margin-top: 0; }
+.legal-prose h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 26px;
+  letter-spacing: -0.02em;
+  margin: 28px 0 8px;
+  color: var(--text-1);
+}
+.legal-prose p { margin: 0 0 16px; color: var(--text-2); }
+.legal-prose strong { color: var(--text-1); font-weight: 600; }
+.legal-prose ul, .legal-prose ol { margin: 0 0 16px; padding-left: 22px; color: var(--text-2); }
+.legal-prose li { margin-bottom: 8px; }
+.legal-prose a {
+  color: var(--brand-blue);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+.legal-prose code {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  background: var(--surface-2);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--ink);
+}
+.legal-prose .callout {
+  background: var(--brand-blue-50);
+  border: 1px solid var(--brand-blue-100);
+  border-radius: 12px;
+  padding: 16px 20px;
+  color: var(--ink-2);
+  margin: 16px 0 24px;
+  font-size: 14px;
+  line-height: 22px;
+}
+
 /* Mobile */
 @media (max-width: 640px) {
   .section-pad { padding-left: 20px; padding-right: 20px; }
+  .legal-prose { font-size: 15px; line-height: 24px; }
   .grid-2,
   .grid-3,
   .grid-4,
@@ -168,4 +225,5 @@ body {
   .section-y-pad { padding-top: 56px !important; padding-bottom: 56px !important; }
   .stack-mobile { flex-direction: column !important; align-items: stretch !important; }
   .stack-mobile > * { width: 100%; }
+  .legal-card { padding: 32px 20px !important; }
 }

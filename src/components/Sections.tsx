@@ -264,26 +264,26 @@ export const Footer = () => (
         <FooterCol
           title="Product"
           links={[
-            { label: "How it works", href: "#how-it-works" },
-            { label: "Why Dealio", href: "#why-dealio" },
-            { label: "Pricing", href: "#pricing" },
-            { label: "FAQ", href: "#faq" },
+            { label: "How it works", href: "/#how-it-works" },
+            { label: "Why Dealio", href: "/#why-dealio" },
+            { label: "Pricing", href: "/#pricing" },
+            { label: "FAQ", href: "/#faq" },
           ]}
         />
         <FooterCol
           title="Company"
           links={[
-            { label: "About", href: "#about" },
+            { label: "About", href: "/#about" },
             { label: "Contact", href: "mailto:thedealioteam@gmail.com" },
-            { label: "Email us", href: "mailto:thedealioteam@gmail.com" },
+            { label: "SMS opt-in", href: "/opt-in" },
           ]}
         />
         <FooterCol
           title="Legal"
           links={[
-            { label: "Terms", href: "#" },
-            { label: "Privacy", href: "#" },
-            { label: "Security", href: "#" },
+            { label: "Terms", href: "/terms" },
+            { label: "Privacy", href: "/privacy" },
+            { label: "SMS terms", href: "/sms-terms" },
           ]}
         />
       </div>
