@@ -4,6 +4,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Sections";
 import { Eyebrow } from "@/components/Primitives";
 import { OptInForm } from "@/components/OptInForm";
+import { BUSINESS, formatAddress } from "@/lib/business";
 
 export const metadata: Metadata = {
   title: "SMS Opt-In · Dealio",
@@ -81,10 +82,12 @@ export default function OptInPage() {
                 padding: "0 16px",
               }}
             >
-              Sign up to receive SMS messages from <strong>Dealio Inc.</strong>{" "}
-              about your lead program — onboarding instructions, real-time lead
-              delivery, and account updates. We&apos;ll never share your number
-              with third parties for their marketing.
+              Sign up to receive SMS messages from{" "}
+              <strong>{BUSINESS.legalName}</strong> about your lead program —
+              onboarding instructions, real-time lead delivery, billing notices,
+              and occasional offers. Mobile information (phone numbers and SMS
+              consent) is never shared with third parties or affiliates for
+              their marketing or promotional purposes.
             </p>
           </div>
         </div>
@@ -124,15 +127,22 @@ export default function OptInPage() {
                 margin: 0,
               }}
             >
-              Program: <strong style={{ color: "var(--ink)" }}>Dealio Leads</strong> ·
-              Operator: <strong style={{ color: "var(--ink)" }}>Dealio Inc.</strong>{" "}
-              · Frequency: up to ~4 msgs/month · Help:{" "}
+              Program:{" "}
+              <strong style={{ color: "var(--ink)" }}>Dealio Leads</strong> ·
+              Operator:{" "}
+              <strong style={{ color: "var(--ink)" }}>
+                {BUSINESS.legalName}
+              </strong>{" "}
+              · Frequency: up to ~10 marketing msgs/month + transactional
+              messages triggered by your account · Help:{" "}
               <a
-                href="mailto:thedealioteam@gmail.com"
+                href={`mailto:${BUSINESS.supportEmail}`}
                 style={{ color: "var(--brand-blue)" }}
               >
-                thedealioteam@gmail.com
-              </a>
+                {BUSINESS.supportEmail}
+              </a>{" "}
+              · Address:{" "}
+              <span style={{ color: "var(--ink)" }}>{formatAddress()}</span>
             </p>
           </div>
 
@@ -149,13 +159,14 @@ export default function OptInPage() {
               textAlign: "center",
             }}
           >
-            Already opted in and want to stop? Reply <code>STOP</code> to any
-            Dealio text, or email{" "}
+            Already opted in and want to stop? Reply <code>STOP</code> (or{" "}
+            <code>STOPALL</code>, <code>UNSUBSCRIBE</code>, <code>CANCEL</code>,{" "}
+            <code>END</code>, or <code>QUIT</code>) to any Dealio text, or email{" "}
             <a
-              href="mailto:thedealioteam@gmail.com"
+              href={`mailto:${BUSINESS.supportEmail}`}
               style={{ color: "var(--brand-blue)" }}
             >
-              thedealioteam@gmail.com
+              {BUSINESS.supportEmail}
             </a>
             . See our{" "}
             <Link href="/sms-terms" style={{ color: "var(--brand-blue)" }}>

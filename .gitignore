@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# sms opt-in audit log (dev fallback location). In production, point
+# OPT_IN_LOG_PATH at a durable, backed-up volume instead of committing this.
+.opt-in-records.jsonl
+

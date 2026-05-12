@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { LegalPage } from "@/components/LegalPage";
+import { BUSINESS, formatAddress } from "@/lib/business";
 
 export const metadata: Metadata = {
   title: "Privacy Policy · Dealio",
@@ -16,12 +17,12 @@ export default function PrivacyPage() {
       updated="May 12, 2026"
     >
       <p>
-        This Privacy Policy describes how <strong>Dealio Inc.</strong>{" "}
-        (&ldquo;Dealio,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;)
-        collects, uses, shares, and protects information about you when you
-        visit our website, fill out a form, opt in to our SMS program, or
-        otherwise interact with us. By using our site or services, you agree to
-        the practices described here.
+        This Privacy Policy describes how <strong>{BUSINESS.legalName}</strong>{" "}
+        (&ldquo;Dealio,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo; or
+        &ldquo;our&rdquo;) collects, uses, shares, and protects information
+        about you when you visit our website, fill out a form, opt in to our
+        SMS program, or otherwise interact with us. By using our site or
+        services, you agree to the practices described here.
       </p>
 
       <div className="callout">
@@ -43,11 +44,13 @@ export default function PrivacyPage() {
         </li>
         <li>
           <strong>SMS opt-in records</strong> — the exact consent language you
-          accepted, the date and time you opted in, the IP address and user
-          agent of your browser at the time of submission, and the page URL
-          where the form was hosted. We retain this record for as long as you
-          remain opted in and for at least 5 years after opt-out, to comply
-          with TCPA and carrier audit requirements.
+          accepted (with a version stamp), the date and time you opted in, the
+          IP address and user agent of your browser at the time of submission,
+          the page URL where the form was hosted, and the sub-processor record
+          (e.g., Twilio message SID) of the welcome confirmation message. We
+          retain this record for as long as you remain opted in and for at
+          least 5 years after opt-out, to comply with TCPA and carrier audit
+          requirements.
         </li>
         <li>
           <strong>Lead and account data</strong> — for operators using our
@@ -125,11 +128,17 @@ export default function PrivacyPage() {
       <p>
         If you opt in to receive SMS messages from Dealio, you are enrolled in
         the program described in our{" "}
-        <Link href="/sms-terms">SMS Terms &amp; Conditions</Link>. Message and
-        data rates may apply. Message frequency varies. Reply <code>STOP</code>{" "}
-        to any message to opt out, or <code>HELP</code> for help. You can also
-        opt out by emailing{" "}
-        <a href="mailto:thedealioteam@gmail.com">thedealioteam@gmail.com</a>.
+        <Link href="/sms-terms">SMS Terms &amp; Conditions</Link>. Messages
+        may be sent using an automatic telephone dialing system (ATDS) or
+        other automated technology. Message and data rates may apply. Message
+        frequency varies. Reply <code>STOP</code> (or any of <code>STOPALL</code>,{" "}
+        <code>UNSUBSCRIBE</code>, <code>CANCEL</code>, <code>END</code>,{" "}
+        <code>QUIT</code>) to any message to opt out, or <code>HELP</code> for
+        help. You can also opt out by emailing{" "}
+        <a href={`mailto:${BUSINESS.supportEmail}`}>
+          {BUSINESS.supportEmail}
+        </a>
+        .
       </p>
       <p>
         Phone numbers and SMS consent records are stored solely to deliver the
@@ -155,47 +164,65 @@ export default function PrivacyPage() {
         required, we delete or de-identify it.
       </p>
 
-      <h2>7. Your rights</h2>
+      <h2 id="your-rights">7. Your rights</h2>
       <p>
         Depending on where you live, you may have rights to access, correct,
         delete, or port your personal information, to opt out of certain
         processing, and to withdraw consent. To exercise any of these rights,
         email{" "}
-        <a href="mailto:thedealioteam@gmail.com">thedealioteam@gmail.com</a>.
-        We will verify your request and respond within the time frame required
-        by law.
+        <a href={`mailto:${BUSINESS.complianceEmail}`}>
+          {BUSINESS.complianceEmail}
+        </a>
+        . We will verify your request and respond within the time frame
+        required by law.
       </p>
+
+      <h2 id="california-rights">8. California residents (CCPA/CPRA)</h2>
       <p>
         California residents have additional rights under the CCPA/CPRA,
         including the right to know, delete, correct, and limit the use of
         sensitive personal information, and the right not to be discriminated
-        against for exercising those rights. Dealio does not &ldquo;sell&rdquo;
-        or &ldquo;share&rdquo; personal information as those terms are defined
-        under the CCPA.
+        against for exercising those rights.
+      </p>
+      <p>
+        <strong>
+          Do Not Sell or Share My Personal Information.
+        </strong>{" "}
+        Dealio does not &ldquo;sell&rdquo; or &ldquo;share&rdquo; personal
+        information as those terms are defined under the CCPA/CPRA, and in
+        particular we never sell, share, rent, or otherwise disclose mobile
+        phone numbers or SMS consent records to third parties or affiliates
+        for cross-context behavioral advertising or for their own marketing.
+        California residents may submit a verifiable request to confirm this,
+        or to exercise any other right under the CCPA/CPRA, by emailing{" "}
+        <a href={`mailto:${BUSINESS.complianceEmail}`}>
+          {BUSINESS.complianceEmail}
+        </a>{" "}
+        with the subject line &ldquo;CCPA Request.&rdquo;
       </p>
 
-      <h2>8. Children</h2>
+      <h2>9. Children</h2>
       <p>
         Our services are intended for users 18 and older. We do not knowingly
         collect personal information from children under 13, and our SMS
         program is not directed at minors.
       </p>
 
-      <h2>9. Security</h2>
+      <h2>10. Security</h2>
       <p>
         We use commercially reasonable administrative, technical, and physical
         safeguards to protect your information. No system is perfectly secure,
         and we cannot guarantee absolute security.
       </p>
 
-      <h2>10. International users</h2>
+      <h2>11. International users</h2>
       <p>
         Dealio operates in the United States. If you access our services from
         outside the U.S., you understand that your information will be
         processed in the United States under U.S. law.
       </p>
 
-      <h2>11. Changes to this policy</h2>
+      <h2>12. Changes to this policy</h2>
       <p>
         We may update this Privacy Policy from time to time. We&apos;ll post
         the new version with a revised &ldquo;Last updated&rdquo; date. If the
@@ -203,11 +230,17 @@ export default function PrivacyPage() {
         email.
       </p>
 
-      <h2>12. Contact us</h2>
+      <h2>13. Contact us</h2>
       <p>
         Questions, requests, or complaints? Email{" "}
-        <a href="mailto:thedealioteam@gmail.com">thedealioteam@gmail.com</a>{" "}
-        and we&apos;ll respond promptly.
+        <a href={`mailto:${BUSINESS.supportEmail}`}>
+          {BUSINESS.supportEmail}
+        </a>{" "}
+        (general) or{" "}
+        <a href={`mailto:${BUSINESS.complianceEmail}`}>
+          {BUSINESS.complianceEmail}
+        </a>{" "}
+        (privacy/CCPA). Postal address: {formatAddress()}.
       </p>
     </LegalPage>
   );

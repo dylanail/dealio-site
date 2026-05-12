@@ -144,7 +144,7 @@ export default function TermsPage() {
       <h2>12. Contact</h2>
       <p>
         Dealio Inc. — questions about these Terms can be sent to{" "}
-        <a href="mailto:thedealioteam@gmail.com">thedealioteam@gmail.com</a>.
+        <a href="mailto:support@dealio.com">support@dealio.com</a>.
       </p>
     </LegalPage>
   );

@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { CONSENT_VERSION, STOP_KEYWORDS } from "@/lib/sms-consent";
+import { BUSINESS } from "@/lib/business";
 
 const inputStyle: React.CSSProperties = {
   width: "100%",
@@ -28,6 +30,16 @@ const labelStyle: React.CSSProperties = {
   display: "block",
 };
 
+const attestationRow: React.CSSProperties = {
+  display: "flex",
+  gap: 12,
+  alignItems: "flex-start",
+  fontFamily: "var(--font-body)",
+  fontSize: 13,
+  lineHeight: "20px",
+  color: "var(--text-1)",
+};
+
 type Status = "idle" | "submitting" | "success" | "error";
 
 const formatPhone = (raw: string) => {
@@ -38,20 +50,57 @@ const formatPhone = (raw: string) => {
   return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
 };
 
+const ConsentDisclosure = () => (
+  <>
+    By checking this box and submitting this form, I expressly authorize{" "}
+    <strong>{BUSINESS.legalName}</strong> to send me recurring SMS text
+    messages — including marketing messages — at the U.S. mobile number I
+    provided,{" "}
+    <strong>
+      including messages sent using an automatic telephone dialing system
+      (ATDS) or other automated technology
+    </strong>
+    . Messages may include lead-program updates, onboarding instructions,
+    account and billing notices, and offers. Up to ~10 marketing messages per
+    month plus transactional messages triggered by my account activity;
+    frequency varies.{" "}
+    <strong>
+      Consent to receive marketing texts is not required as a condition of
+      purchasing any goods or services.
+    </strong>{" "}
+    Message and data rates may apply. I can reply <code>STOP</code>,{" "}
+    <code>STOPALL</code>, <code>UNSUBSCRIBE</code>, <code>CANCEL</code>,{" "}
+    <code>END</code>, or <code>QUIT</code> at any time to opt out, or{" "}
+    <code>HELP</code> for help. I have read and agree to Dealio&apos;s{" "}
+    <Link href="/sms-terms">SMS Terms</Link> and{" "}
+    <Link href="/privacy">Privacy Policy</Link>.
+  </>
+);
+
 export const OptInForm = () => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [company, setCompany] = useState("");
   const [consent, setConsent] = useState(false);
+  const [ageConfirmed, setAgeConfirmed] = useState(false);
+  const [subscriberConfirmed, setSubscriberConfirmed] = useState(false);
+  // Honeypot: real users never see / fill this. Bots tend to fill every
+  // <input>. Submitting a non-empty value silently 200s on the server.
+  const [website, setWebsite] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
+  const [confirmationStatus, setConfirmationStatus] = useState<
+    "sent" | "skipped" | "failed" | null
+  >(null);
 
   const phoneDigits = phone.replace(/[^\d]/g, "");
   const valid =
     name.trim().length >= 2 &&
     phoneDigits.length === 10 &&
     consent &&
+    ageConfirmed &&
+    subscriberConfirmed &&
     status !== "submitting";
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -70,16 +119,24 @@ export const OptInForm = () => {
           email: email.trim() || null,
           company: company.trim() || null,
           consent: true,
-          consentText: CONSENT_TEXT,
+          ageConfirmed: true,
+          subscriberConfirmed: true,
+          consentVersion: CONSENT_VERSION,
           consentTimestamp: new Date().toISOString(),
           pageUrl: typeof window !== "undefined" ? window.location.href : null,
-          userAgent: typeof navigator !== "undefined" ? navigator.userAgent : null,
+          userAgent:
+            typeof navigator !== "undefined" ? navigator.userAgent : null,
+          website, // honeypot
         }),
       });
       if (!res.ok) {
         const body = await res.json().catch(() => ({}));
         throw new Error(body?.error || "Submission failed");
       }
+      const body = (await res.json().catch(() => ({}))) as {
+        confirmationSmsStatus?: "sent" | "skipped" | "failed";
+      };
+      setConfirmationStatus(body.confirmationSmsStatus ?? null);
       setStatus("success");
     } catch (err) {
       setStatus("error");
@@ -139,15 +196,33 @@ export const OptInForm = () => {
             lineHeight: "24px",
             color: "var(--text-2)",
             margin: 0,
-            maxWidth: 460,
+            maxWidth: 480,
             marginLeft: "auto",
             marginRight: "auto",
           }}
         >
-          We&apos;ve recorded your consent to receive SMS messages from Dealio at{" "}
+          We&apos;ve recorded your consent to receive SMS messages from{" "}
+          {BUSINESS.brandName} at{" "}
           <strong style={{ color: "var(--ink)" }}>{formatPhone(phone)}</strong>.
-          You can reply <code>STOP</code> at any time to opt out, or{" "}
-          <code>HELP</code> for help.
+          {confirmationStatus === "sent" ? (
+            <>
+              {" "}
+              Check your phone — we just sent a welcome text confirming your
+              enrollment.
+            </>
+          ) : (
+            <>
+              {" "}
+              Your enrollment is confirmed. If you don&apos;t receive an SMS
+              welcome message within a few minutes, email{" "}
+              <a href={`mailto:${BUSINESS.supportEmail}`}>
+                {BUSINESS.supportEmail}
+              </a>
+              .
+            </>
+          )}{" "}
+          Reply <code>STOP</code> at any time to opt out, or <code>HELP</code>{" "}
+          for help.
         </p>
         <div style={{ marginTop: 20 }}>
           <Link
@@ -217,7 +292,8 @@ export const OptInForm = () => {
             margin: "6px 0 0",
           }}
         >
-          US mobile numbers only. We&apos;ll send a confirmation text.
+          U.S. mobile numbers only. We&apos;ll send a welcome text to confirm
+          your enrollment.
         </p>
       </div>
 
@@ -254,6 +330,30 @@ export const OptInForm = () => {
         </div>
       </div>
 
+      {/* Honeypot — visually hidden, screen-reader hidden, not part of tab order. */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          left: "-10000px",
+          top: "auto",
+          width: 1,
+          height: 1,
+          overflow: "hidden",
+        }}
+      >
+        <label htmlFor="optin-website">Website (leave blank)</label>
+        <input
+          id="optin-website"
+          name="website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          value={website}
+          onChange={(e) => setWebsite(e.target.value)}
+        />
+      </div>
+
       <div
         style={{
           marginTop: 4,
@@ -262,38 +362,83 @@ export const OptInForm = () => {
           border: "1px solid var(--border)",
           borderRadius: 14,
           display: "flex",
-          gap: 14,
-          alignItems: "flex-start",
+          flexDirection: "column",
+          gap: 16,
         }}
       >
-        <input
-          id="optin-consent"
-          name="consent"
-          type="checkbox"
-          checked={consent}
-          onChange={(e) => setConsent(e.target.checked)}
-          required
-          style={{
-            marginTop: 4,
-            width: 18,
-            height: 18,
-            flexShrink: 0,
-            accentColor: "var(--brand-blue)",
-            cursor: "pointer",
-          }}
-        />
-        <label
-          htmlFor="optin-consent"
-          style={{
-            fontFamily: "var(--font-body)",
-            fontSize: 14,
-            lineHeight: "22px",
-            color: "var(--text-1)",
-            cursor: "pointer",
-          }}
-        >
-          {CONSENT_TEXT_JSX}
-        </label>
+        <div style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
+          <input
+            id="optin-consent"
+            name="consent"
+            type="checkbox"
+            checked={consent}
+            onChange={(e) => setConsent(e.target.checked)}
+            required
+            style={{
+              marginTop: 4,
+              width: 18,
+              height: 18,
+              flexShrink: 0,
+              accentColor: "var(--brand-blue)",
+              cursor: "pointer",
+            }}
+          />
+          <label
+            htmlFor="optin-consent"
+            style={{
+              fontFamily: "var(--font-body)",
+              fontSize: 14,
+              lineHeight: "22px",
+              color: "var(--text-1)",
+              cursor: "pointer",
+            }}
+          >
+            <ConsentDisclosure />
+          </label>
+        </div>
+
+        <div style={attestationRow}>
+          <input
+            id="optin-age"
+            type="checkbox"
+            checked={ageConfirmed}
+            onChange={(e) => setAgeConfirmed(e.target.checked)}
+            required
+            style={{
+              marginTop: 3,
+              width: 16,
+              height: 16,
+              flexShrink: 0,
+              accentColor: "var(--brand-blue)",
+              cursor: "pointer",
+            }}
+          />
+          <label htmlFor="optin-age" style={{ cursor: "pointer" }}>
+            I confirm I am at least 18 years old.
+          </label>
+        </div>
+
+        <div style={attestationRow}>
+          <input
+            id="optin-subscriber"
+            type="checkbox"
+            checked={subscriberConfirmed}
+            onChange={(e) => setSubscriberConfirmed(e.target.checked)}
+            required
+            style={{
+              marginTop: 3,
+              width: 16,
+              height: 16,
+              flexShrink: 0,
+              accentColor: "var(--brand-blue)",
+              cursor: "pointer",
+            }}
+          />
+          <label htmlFor="optin-subscriber" style={{ cursor: "pointer" }}>
+            I confirm the mobile number above is mine, or that I am authorized
+            to enroll it.
+          </label>
+        </div>
       </div>
 
       <p
@@ -306,9 +451,12 @@ export const OptInForm = () => {
           lineHeight: "18px",
         }}
       >
-        MSG &amp; DATA RATES MAY APPLY · MSG FREQUENCY VARIES (UP TO ~4/MONTH) ·
-        REPLY <strong style={{ color: "var(--text-2)" }}>STOP</strong> TO
-        CANCEL, <strong style={{ color: "var(--text-2)" }}>HELP</strong> FOR
+        MSG &amp; DATA RATES MAY APPLY · UP TO ~10 MARKETING MSGS/MONTH +
+        TRANSACTIONAL · REPLY{" "}
+        <strong style={{ color: "var(--text-2)" }}>
+          {STOP_KEYWORDS.join(" / ")}
+        </strong>{" "}
+        TO CANCEL, <strong style={{ color: "var(--text-2)" }}>HELP</strong> FOR
         HELP · CARRIERS ARE NOT LIABLE FOR DELAYED OR UNDELIVERED MESSAGES
       </p>
 
@@ -353,22 +501,3 @@ export const OptInForm = () => {
     </form>
   );
 };
-
-// Exact consent language stored alongside each opt-in record (TCPA / A2P 10DLC requirement).
-const CONSENT_TEXT =
-  "By checking this box and submitting this form, I agree to receive recurring SMS text messages from Dealio Inc. at the mobile number I provided, including informational, account, and marketing messages (such as lead-program updates, onboarding instructions, and offers). Consent is not a condition of any purchase. Message and data rates may apply. Message frequency varies. I can reply STOP to unsubscribe or HELP for help at any time. I have read and agree to Dealio's SMS Terms and Privacy Policy.";
-
-const CONSENT_TEXT_JSX = (
-  <>
-    By checking this box and submitting this form, I agree to receive recurring
-    SMS text messages from <strong>Dealio Inc.</strong> at the mobile number I
-    provided, including informational, account, and marketing messages (such as
-    lead-program updates, onboarding instructions, and offers).{" "}
-    <strong>Consent is not a condition of any purchase.</strong> Message and
-    data rates may apply. Message frequency varies. I can reply{" "}
-    <code>STOP</code> to unsubscribe or <code>HELP</code> for help at any time.
-    I have read and agree to Dealio&apos;s{" "}
-    <Link href="/sms-terms">SMS Terms</Link> and{" "}
-    <Link href="/privacy">Privacy Policy</Link>.
-  </>
-);

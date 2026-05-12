@@ -128,10 +128,10 @@ export const CTABand = () => (
         <Button
           variant="primary"
           size="lg"
-          href="mailto:thedealioteam@gmail.com"
+          href="mailto:support@dealio.com"
           style={{ textTransform: "none", letterSpacing: "-0.005em", fontSize: 15 }}
         >
-          thedealioteam@gmail.com
+          support@dealio.com
         </Button>
       </div>
     </div>
@@ -231,7 +231,7 @@ export const Footer = () => (
             warmed and ready — and never sold twice.
           </p>
           <a
-            href="mailto:thedealioteam@gmail.com"
+            href="mailto:support@dealio.com"
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -258,7 +258,7 @@ export const Footer = () => (
                 boxShadow: "0 0 10px var(--brand-blue)",
               }}
             />
-            thedealioteam@gmail.com
+            support@dealio.com
           </a>
         </div>
         <FooterCol
@@ -274,7 +274,7 @@ export const Footer = () => (
           title="Company"
           links={[
             { label: "About", href: "/#about" },
-            { label: "Contact", href: "mailto:thedealioteam@gmail.com" },
+            { label: "Contact", href: "mailto:support@dealio.com" },
             { label: "SMS opt-in", href: "/opt-in" },
           ]}
         />
@@ -284,6 +284,10 @@ export const Footer = () => (
             { label: "Terms", href: "/terms" },
             { label: "Privacy", href: "/privacy" },
             { label: "SMS terms", href: "/sms-terms" },
+            {
+              label: "Do Not Sell or Share",
+              href: "/privacy#california-rights",
+            },
           ]}
         />
       </div>
@@ -296,6 +300,8 @@ export const Footer = () => (
           fontFamily: "var(--font-body)",
           fontSize: 13,
           color: "rgba(255,255,255,0.5)",
+          flexWrap: "wrap",
+          gap: 12,
         }}
       >
         <span>© 2026 Dealio Inc.</span>

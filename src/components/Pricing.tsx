@@ -179,7 +179,7 @@ const PlanCard = ({
     <Button
       variant={featured ? "primary" : "secondary"}
       size="md"
-      href="mailto:thedealioteam@gmail.com"
+      href="mailto:support@dealio.com"
       style={{ alignSelf: "stretch", justifyContent: "space-between" }}
     >
       {cta}
