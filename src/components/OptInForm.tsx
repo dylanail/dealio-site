@@ -40,7 +40,7 @@ const attestationRow: React.CSSProperties = {
   color: "var(--text-1)",
 };
 
-type Status = "idle" | "submitting" | "success" | "error";
+type Status = "idle" | "submitting" | "pending_confirmation" | "error";
 
 const formatPhone = (raw: string) => {
   const digits = raw.replace(/[^\d]/g, "").slice(0, 10);
@@ -52,7 +52,7 @@ const formatPhone = (raw: string) => {
 
 const ConsentDisclosure = () => (
   <>
-    By checking this box and submitting this form, I expressly authorize{" "}
+    By checking these boxes and submitting this form, I expressly authorize{" "}
     <strong>{BUSINESS.legalName}</strong> to send me recurring SMS text
     messages — including marketing messages — at the U.S. mobile number I
     provided,{" "}
@@ -68,14 +68,35 @@ const ConsentDisclosure = () => (
       Consent to receive marketing texts is not required as a condition of
       purchasing any goods or services.
     </strong>{" "}
+    <strong>
+      I understand my enrollment is confirmed only after I reply{" "}
+      <code>YES</code> to the verification text sent to my number.
+    </strong>{" "}
     Message and data rates may apply. I can reply <code>STOP</code>,{" "}
     <code>STOPALL</code>, <code>UNSUBSCRIBE</code>, <code>CANCEL</code>,{" "}
     <code>END</code>, or <code>QUIT</code> at any time to opt out, or{" "}
-    <code>HELP</code> for help. I have read and agree to Dealio&apos;s{" "}
-    <Link href="/sms-terms">SMS Terms</Link> and{" "}
+    <code>HELP</code> / <code>INFO</code> for help. I have read and agree to
+    Dealio&apos;s <Link href="/sms-terms">SMS Terms</Link> and{" "}
     <Link href="/privacy">Privacy Policy</Link>.
   </>
 );
+
+const missingFieldsMessage = (state: {
+  name: string;
+  phoneDigits: number;
+  consent: boolean;
+  ageConfirmed: boolean;
+  subscriberConfirmed: boolean;
+}): string | null => {
+  const missing: string[] = [];
+  if (state.name.trim().length < 2) missing.push("Full name");
+  if (state.phoneDigits !== 10) missing.push("Mobile phone (10 digits)");
+  if (!state.consent) missing.push("SMS consent");
+  if (!state.ageConfirmed) missing.push("18+ confirmation");
+  if (!state.subscriberConfirmed) missing.push("Number-ownership confirmation");
+  if (missing.length === 0) return null;
+  return `Please complete: ${missing.join(", ")}.`;
+};
 
 export const OptInForm = () => {
   const [name, setName] = useState("");
@@ -85,23 +106,30 @@ export const OptInForm = () => {
   const [consent, setConsent] = useState(false);
   const [ageConfirmed, setAgeConfirmed] = useState(false);
   const [subscriberConfirmed, setSubscriberConfirmed] = useState(false);
-  // Honeypot: real users never see / fill this. Bots tend to fill every
-  // <input>. Submitting a non-empty value silently 200s on the server.
+  // Honeypot. Real users never fill this. If a screen reader or password
+  // manager ever does fill it (rare — see the wrapper styles + autocomplete
+  // hints), the server logs the trip and silently 200s; support can then
+  // reach out via email.
   const [website, setWebsite] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
-  const [confirmationStatus, setConfirmationStatus] = useState<
-    "sent" | "skipped" | "failed" | null
-  >(null);
 
-  const phoneDigits = phone.replace(/[^\d]/g, "");
+  const phoneDigits = phone.replace(/[^\d]/g, "").length;
   const valid =
     name.trim().length >= 2 &&
-    phoneDigits.length === 10 &&
+    phoneDigits === 10 &&
     consent &&
     ageConfirmed &&
     subscriberConfirmed &&
     status !== "submitting";
+
+  const completionHint = missingFieldsMessage({
+    name,
+    phoneDigits,
+    consent,
+    ageConfirmed,
+    subscriberConfirmed,
+  });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -115,7 +143,7 @@ export const OptInForm = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: name.trim(),
-          phone: `+1${phoneDigits}`,
+          phone: `+1${phone.replace(/[^\d]/g, "")}`,
           email: email.trim() || null,
           company: company.trim() || null,
           consent: true,
@@ -123,9 +151,6 @@ export const OptInForm = () => {
           subscriberConfirmed: true,
           consentVersion: CONSENT_VERSION,
           consentTimestamp: new Date().toISOString(),
-          pageUrl: typeof window !== "undefined" ? window.location.href : null,
-          userAgent:
-            typeof navigator !== "undefined" ? navigator.userAgent : null,
           website, // honeypot
         }),
       });
@@ -133,20 +158,18 @@ export const OptInForm = () => {
         const body = await res.json().catch(() => ({}));
         throw new Error(body?.error || "Submission failed");
       }
-      const body = (await res.json().catch(() => ({}))) as {
-        confirmationSmsStatus?: "sent" | "skipped" | "failed";
-      };
-      setConfirmationStatus(body.confirmationSmsStatus ?? null);
-      setStatus("success");
+      setStatus("pending_confirmation");
     } catch (err) {
       setStatus("error");
       setError(err instanceof Error ? err.message : "Something went wrong");
     }
   };
 
-  if (status === "success") {
+  if (status === "pending_confirmation") {
     return (
       <div
+        role="status"
+        aria-live="polite"
         style={{
           padding: "40px 32px",
           borderRadius: 18,
@@ -187,7 +210,7 @@ export const OptInForm = () => {
             letterSpacing: "-0.03em",
           }}
         >
-          You&apos;re opted in.
+          Check your phone.
         </h2>
         <p
           style={{
@@ -196,33 +219,50 @@ export const OptInForm = () => {
             lineHeight: "24px",
             color: "var(--text-2)",
             margin: 0,
-            maxWidth: 480,
+            maxWidth: 500,
             marginLeft: "auto",
             marginRight: "auto",
           }}
         >
-          We&apos;ve recorded your consent to receive SMS messages from{" "}
-          {BUSINESS.brandName} at{" "}
+          We just texted{" "}
           <strong style={{ color: "var(--ink)" }}>{formatPhone(phone)}</strong>.
-          {confirmationStatus === "sent" ? (
-            <>
-              {" "}
-              Check your phone — we just sent a welcome text confirming your
-              enrollment.
-            </>
-          ) : (
-            <>
-              {" "}
-              Your enrollment is confirmed. If you don&apos;t receive an SMS
-              welcome message within a few minutes, email{" "}
-              <a href={`mailto:${BUSINESS.supportEmail}`}>
-                {BUSINESS.supportEmail}
-              </a>
-              .
-            </>
-          )}{" "}
-          Reply <code>STOP</code> at any time to opt out, or <code>HELP</code>{" "}
-          for help.
+          Reply <code>YES</code> to confirm enrollment in Dealio Leads — your
+          opt-in is not complete until you reply. Reply <code>STOP</code> at
+          any time to cancel, or <code>HELP</code> for help.
+        </p>
+        <p
+          style={{
+            fontFamily: "var(--font-body)",
+            fontSize: 13,
+            lineHeight: "20px",
+            color: "var(--text-3)",
+            margin: "12px 0 0",
+            maxWidth: 500,
+            marginLeft: "auto",
+            marginRight: "auto",
+          }}
+        >
+          Didn&apos;t get the text after a minute or two? Check the number and{" "}
+          <button
+            type="button"
+            onClick={() => setStatus("idle")}
+            style={{
+              background: "transparent",
+              border: "none",
+              padding: 0,
+              color: "var(--brand-blue)",
+              cursor: "pointer",
+              font: "inherit",
+              textDecoration: "underline",
+            }}
+          >
+            try again
+          </button>
+          , or email{" "}
+          <a href={`mailto:${BUSINESS.supportEmail}`}>
+            {BUSINESS.supportEmail}
+          </a>
+          .
         </p>
         <div style={{ marginTop: 20 }}>
           <Link
@@ -292,8 +332,8 @@ export const OptInForm = () => {
             margin: "6px 0 0",
           }}
         >
-          U.S. mobile numbers only. We&apos;ll send a welcome text to confirm
-          your enrollment.
+          U.S. mobile numbers only. We&apos;ll text you a verification message
+          — you must reply <code>YES</code> to complete enrollment.
         </p>
       </div>
 
@@ -330,7 +370,13 @@ export const OptInForm = () => {
         </div>
       </div>
 
-      {/* Honeypot — visually hidden, screen-reader hidden, not part of tab order. */}
+      {/*
+        Honeypot — visually hidden, removed from accessibility tree, not part
+        of tab order, autofill suppressed. We use a label that explicitly
+        tells humans NOT to fill it (in case any assistive tech surfaces it
+        anyway), and a name (`website`) that browser-autofill heuristics
+        generally do not target for a person's contact form.
+      */}
       <div
         aria-hidden="true"
         style={{
@@ -340,15 +386,21 @@ export const OptInForm = () => {
           width: 1,
           height: 1,
           overflow: "hidden",
+          opacity: 0,
         }}
       >
-        <label htmlFor="optin-website">Website (leave blank)</label>
+        <label htmlFor="optin-website">
+          If you are a human, leave this field blank.
+        </label>
         <input
           id="optin-website"
           name="website"
           type="text"
           tabIndex={-1}
           autoComplete="off"
+          autoCapitalize="off"
+          autoCorrect="off"
+          spellCheck={false}
           value={website}
           onChange={(e) => setWebsite(e.target.value)}
         />
@@ -374,6 +426,7 @@ export const OptInForm = () => {
             checked={consent}
             onChange={(e) => setConsent(e.target.checked)}
             required
+            aria-required="true"
             style={{
               marginTop: 4,
               width: 18,
@@ -404,6 +457,7 @@ export const OptInForm = () => {
             checked={ageConfirmed}
             onChange={(e) => setAgeConfirmed(e.target.checked)}
             required
+            aria-required="true"
             style={{
               marginTop: 3,
               width: 16,
@@ -425,6 +479,7 @@ export const OptInForm = () => {
             checked={subscriberConfirmed}
             onChange={(e) => setSubscriberConfirmed(e.target.checked)}
             required
+            aria-required="true"
             style={{
               marginTop: 3,
               width: 16,
@@ -452,34 +507,58 @@ export const OptInForm = () => {
         }}
       >
         MSG &amp; DATA RATES MAY APPLY · UP TO ~10 MARKETING MSGS/MONTH +
-        TRANSACTIONAL · REPLY{" "}
+        TRANSACTIONAL · VERIFIED DOUBLE OPT-IN (REPLY{" "}
+        <strong style={{ color: "var(--text-2)" }}>YES</strong> TO CONFIRM) ·
+        REPLY{" "}
         <strong style={{ color: "var(--text-2)" }}>
           {STOP_KEYWORDS.join(" / ")}
         </strong>{" "}
-        TO CANCEL, <strong style={{ color: "var(--text-2)" }}>HELP</strong> FOR
-        HELP · CARRIERS ARE NOT LIABLE FOR DELAYED OR UNDELIVERED MESSAGES
+        TO CANCEL,{" "}
+        <strong style={{ color: "var(--text-2)" }}>HELP</strong> OR{" "}
+        <strong style={{ color: "var(--text-2)" }}>INFO</strong> FOR HELP ·
+        CARRIERS ARE NOT LIABLE FOR DELAYED OR UNDELIVERED MESSAGES
       </p>
 
-      {status === "error" && (
-        <div
-          role="alert"
-          style={{
-            padding: "12px 16px",
-            background: "var(--danger-bg)",
-            border: "1px solid var(--danger)",
-            borderRadius: 10,
-            color: "var(--danger)",
-            fontFamily: "var(--font-body)",
-            fontSize: 14,
-          }}
-        >
-          {error ?? "Submission failed. Please try again."}
-        </div>
-      )}
+      <div
+        role="status"
+        aria-live="polite"
+        style={{ minHeight: 0 }}
+      >
+        {status === "error" && (
+          <div
+            role="alert"
+            style={{
+              padding: "12px 16px",
+              background: "var(--danger-bg)",
+              border: "1px solid var(--danger)",
+              borderRadius: 10,
+              color: "var(--danger)",
+              fontFamily: "var(--font-body)",
+              fontSize: 14,
+            }}
+          >
+            {error ?? "Submission failed. Please try again."}
+          </div>
+        )}
+        {status !== "error" && completionHint && (
+          <p
+            style={{
+              fontFamily: "var(--font-body)",
+              fontSize: 12,
+              lineHeight: "18px",
+              color: "var(--text-3)",
+              margin: 0,
+            }}
+          >
+            {completionHint}
+          </p>
+        )}
+      </div>
 
       <button
         type="submit"
         disabled={!valid}
+        aria-describedby="optin-submit-hint"
         style={{
           height: 52,
           borderRadius: 999,
@@ -496,8 +575,12 @@ export const OptInForm = () => {
           marginTop: 4,
         }}
       >
-        {status === "submitting" ? "Submitting…" : "Opt in to SMS"}
+        {status === "submitting" ? "Sending verification…" : "Send verification text"}
       </button>
+      <span id="optin-submit-hint" style={{ display: "none" }}>
+        Submitting will text a verification code to the number above. You must
+        reply YES to complete enrollment.
+      </span>
     </form>
   );
 };

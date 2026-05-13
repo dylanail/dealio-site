@@ -130,11 +130,18 @@ export default function PrivacyPage() {
         the program described in our{" "}
         <Link href="/sms-terms">SMS Terms &amp; Conditions</Link>. Messages
         may be sent using an automatic telephone dialing system (ATDS) or
-        other automated technology. Message and data rates may apply. Message
-        frequency varies. Reply <code>STOP</code> (or any of <code>STOPALL</code>,{" "}
+        other automated technology. Message and data rates may apply.{" "}
+        <strong>
+          Frequency: up to ~10 marketing messages per month plus transactional
+          messages triggered by your account activity.
+        </strong>{" "}
+        Enrollment uses a verified double opt-in: marketing and program
+        messages are only sent after you reply <code>YES</code> to the
+        verification SMS we send when you submit the opt-in form. Reply{" "}
+        <code>STOP</code> (or any of <code>STOPALL</code>,{" "}
         <code>UNSUBSCRIBE</code>, <code>CANCEL</code>, <code>END</code>,{" "}
-        <code>QUIT</code>) to any message to opt out, or <code>HELP</code> for
-        help. You can also opt out by emailing{" "}
+        <code>QUIT</code>) to any message to opt out, or <code>HELP</code> /{" "}
+        <code>INFO</code> for help. You can also opt out by emailing{" "}
         <a href={`mailto:${BUSINESS.supportEmail}`}>
           {BUSINESS.supportEmail}
         </a>

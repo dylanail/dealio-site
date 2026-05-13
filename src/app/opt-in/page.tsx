@@ -84,10 +84,14 @@ export default function OptInPage() {
             >
               Sign up to receive SMS messages from{" "}
               <strong>{BUSINESS.legalName}</strong> about your lead program —
-              onboarding instructions, real-time lead delivery, billing notices,
-              and occasional offers. Mobile information (phone numbers and SMS
-              consent) is never shared with third parties or affiliates for
-              their marketing or promotional purposes.
+              onboarding instructions, real-time lead delivery, billing
+              notices, and occasional offers. Enrollment uses a{" "}
+              <strong>verified double opt-in</strong>: after you submit the
+              form we&apos;ll text you to confirm, and you must reply{" "}
+              <code>YES</code> before any program messages are sent. Mobile
+              information (phone numbers and SMS consent) is never shared with
+              third parties or affiliates for their marketing or promotional
+              purposes.
             </p>
           </div>
         </div>

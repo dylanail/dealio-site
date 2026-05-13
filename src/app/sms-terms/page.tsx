@@ -65,21 +65,26 @@ export default function SmsTermsPage() {
           Consent to receive marketing texts is not required as a condition of
           purchasing any goods or services.
         </strong>{" "}
-        We obtain your consent through an unchecked checkbox on our opt-in
-        page that displays these SMS Terms and our{" "}
-        <Link href="/privacy">Privacy Policy</Link> at the moment of opt-in,
-        by you texting <code>START</code> or <code>YES</code> to a Dealio long
-        code or short code, or by an equivalent verifiable opt-in flow.
+        We obtain your consent through three (3) unchecked checkboxes on our
+        opt-in page — separately confirming the SMS consent, that you are 18+,
+        and that the mobile number is yours — followed by a{" "}
+        <strong>verified double opt-in</strong>: after you submit the form we
+        send a verification SMS, and you must reply <code>YES</code> before
+        any marketing or program messages are sent to your number. You may
+        alternatively opt in by texting <code>START</code> or <code>YES</code>{" "}
+        to a Dealio long code or short code, or by an equivalent verifiable
+        opt-in flow that displays these SMS Terms and our{" "}
+        <Link href="/privacy">Privacy Policy</Link>.
       </p>
       <p>
-        We retain a record of your opt-in — including the exact consent
-        language (version-stamped), the time and date, the IP address, the
-        user agent, and the URL on which you opted in — solely to comply with
-        the Telephone Consumer Protection Act (TCPA), CTIA Messaging
-        Principles &amp; Best Practices, and carrier requirements for A2P
-        10DLC programs. After opt-in we send a one-time welcome message that
-        identifies Dealio, restates the program frequency, repeats STOP/HELP
-        instructions, and links to these SMS Terms.
+        We retain a record of every consent event — pending, confirmed,
+        opted-out, help-requested — including the exact consent language
+        (version-stamped), the time and date, the IP address, the user agent,
+        the URL on which you opted in, and the Twilio message SID of each
+        outbound or inbound SMS. Records are retained for at least five (5)
+        years after opt-out to comply with the Telephone Consumer Protection
+        Act (TCPA), CTIA Messaging Principles &amp; Best Practices, and
+        carrier requirements for A2P 10DLC programs.
       </p>
 
       <h2>3. Message frequency &amp; cost</h2>
@@ -122,16 +127,16 @@ export default function SmsTermsPage() {
         {formatAddress()}.
       </p>
 
-      <h2>5. Help (HELP)</h2>
+      <h2>5. Help (HELP / INFO)</h2>
       <p>
-        Reply <code>HELP</code> (or <code>INFO</code>) to any Dealio text
+        Reply <code>HELP</code> or <code>INFO</code> to any Dealio text
         message for help. You can also email{" "}
         <a href={`mailto:${BUSINESS.supportEmail}`}>
           {BUSINESS.supportEmail}
         </a>{" "}
-        or call {BUSINESS.supportPhone}. Our reply will identify Dealio,
-        restate the opt-out instructions, and provide a link to these SMS
-        Terms and our Privacy Policy.
+        or call {BUSINESS.supportPhone}. Our reply will identify Dealio, name
+        the program, restate the opt-out instructions, and provide our
+        support contact information.
       </p>
 
       <h2>6. Supported carriers</h2>
