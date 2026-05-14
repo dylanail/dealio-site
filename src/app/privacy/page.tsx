@@ -5,7 +5,7 @@ import { LegalPage } from "@/components/LegalPage";
 export const metadata: Metadata = {
   title: "Privacy Policy · Dealio",
   description:
-    "How Dealio Inc. collects, uses, shares, and protects your personal information — including phone numbers and SMS consent.",
+    "How Dealio LLC collects, uses, shares, and protects your personal information — including phone numbers and SMS consent.",
 };
 
 export default function PrivacyPage() {
@@ -16,7 +16,7 @@ export default function PrivacyPage() {
       updated="May 12, 2026"
     >
       <p>
-        This Privacy Policy describes how <strong>Dealio Inc.</strong>{" "}
+        This Privacy Policy describes how <strong>Dealio LLC</strong>{" "}
         (&ldquo;Dealio,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;)
         collects, uses, shares, and protects information about you when you
         visit our website, fill out a form, opt in to our SMS program, or
@@ -25,12 +25,27 @@ export default function PrivacyPage() {
       </p>
 
       <div className="callout">
-        <strong>SMS / A2P 10DLC disclosure.</strong> Mobile information,
-        including phone numbers and the opt-in consent itself, will{" "}
-        <strong>never be shared</strong> with third parties or affiliates for
-        their marketing or promotional purposes. The categories of personal
-        information listed below also exclude phone numbers collected for SMS
-        consent from any &ldquo;sharing&rdquo; or &ldquo;selling.&rdquo;
+        <strong>SMS / A2P 10DLC disclosure.</strong> Mobile information
+        collected for Dealio&apos;s own SMS messaging program — including the
+        phone numbers of SMS subscribers and the opt-in consent record itself
+        — will <strong>never be shared</strong> with third parties or
+        affiliates for their marketing or promotional purposes. No mobile
+        opt-in data or consent record is sold, rented, or transferred to any
+        third party for marketing. This SMS-program data is also excluded
+        from any &ldquo;sharing&rdquo; or &ldquo;selling&rdquo; under U.S.
+        state privacy laws.
+      </div>
+      <div className="callout">
+        <strong>Separately: consumer quote-request leads.</strong> If you are
+        a <em>consumer</em> who submits a moving-quote request through a
+        Dealio form or chat (a &ldquo;Lead&rdquo;), your name, phone number,
+        and job details will be delivered to a single Dealio operator
+        customer who serves your area, so they can contact you about your
+        move. This is the entire point of the Lead service and is described
+        at the point of submission. That delivery is a separate flow from
+        the SMS messaging program described above, and the protections in
+        the SMS disclosure apply only to phone numbers given to receive
+        SMS from <em>Dealio</em>.
       </div>
 
       <h2>1. Information we collect</h2>
@@ -95,11 +110,18 @@ export default function PrivacyPage() {
           to provide services to Dealio.
         </li>
         <li>
-          <strong>Customers (lead buyers)</strong> — if you submit a request as
-          a <em>consumer looking for a home-services quote</em>, your contact
-          information (name, phone, address, job details) is delivered to the
-          one Dealio operator who purchases the lead in your area. Each lead
-          is delivered to a single operator and is not resold.
+          <strong>Operator customers (Lead delivery)</strong> — if you
+          submit a request as a <em>consumer looking for a moving-services
+          quote</em>, your contact information (name, phone, address, job
+          details) is delivered to the one Dealio operator who purchases the
+          Lead in your area, so that operator can contact you about your
+          move. Each Lead is delivered to a single operator and is not
+          resold. This delivery is the purpose of the form and is disclosed
+          to you at the point of submission. <strong>Phone numbers
+          collected as part of Dealio&apos;s SMS messaging program are
+          handled separately and are not shared under this provision</strong>
+          {" "}— see the SMS / A2P 10DLC disclosure at the top of this
+          Policy.
         </li>
         <li>
           <strong>Legal &amp; safety</strong> — when required by subpoena,
@@ -115,10 +137,15 @@ export default function PrivacyPage() {
       </ul>
       <p>
         <strong>
-          We do not sell your personal information, and we do not share mobile
-          opt-in data or phone numbers with third parties or affiliates for
-          their marketing or promotional purposes.
-        </strong>
+          We do not share SMS opt-in data, SMS consent records, or the phone
+          numbers of Dealio SMS subscribers with any third party or affiliate
+          for that third party&apos;s marketing or promotional purposes. We
+          do not sell those phone numbers.
+        </strong>{" "}
+        Consumer Lead data submitted through a Dealio quote form is delivered
+        to a single operator customer as described above; that delivery is
+        the service the consumer requested and is disclosed at the point of
+        submission.
       </p>
 
       <h2>4. SMS messaging program</h2>
@@ -132,18 +159,35 @@ export default function PrivacyPage() {
         <a href="mailto:thedealioteam@gmail.com">thedealioteam@gmail.com</a>.
       </p>
       <p>
-        Phone numbers and SMS consent records are stored solely to deliver the
-        program you signed up for and to demonstrate consent if required by
-        carriers or regulators. They are not shared, rented, or sold for any
-        third-party marketing purpose.
+        Phone numbers and SMS consent records collected for the Dealio SMS
+        program are stored solely to deliver the SMS program you signed up
+        for and to demonstrate consent if required by carriers or regulators.
+        They are not shared, rented, or sold for any third-party marketing
+        purpose. This protection applies to SMS-program data; consumer Lead
+        submissions are handled under Section 3 above.
       </p>
 
-      <h2>5. Cookies &amp; analytics</h2>
+      <h2>5. Cookies, analytics &amp; third-party widgets</h2>
       <p>
         We use a small number of first-party cookies for essential site
-        functionality and aggregate analytics. We do not use cookies to build
-        cross-site advertising profiles. You can disable cookies in your
-        browser, although parts of the site may not work as expected.
+        functionality and aggregate analytics. We do not use cookies to
+        build cross-site advertising profiles.
+      </p>
+      <p>
+        Our website embeds a third-party chat / lead-capture widget provided
+        by LeadConnector (operated by HighLevel, Inc.). When the widget
+        loads, it may set its own cookies or local storage and, if you
+        engage with it, will collect the information you submit (such as
+        name, phone number, and message) in order to deliver it to Dealio.
+        The widget operates under its own privacy notice surfaced inside
+        the widget; information you submit to the widget is processed by
+        LeadConnector as our service provider and is governed by this
+        Privacy Policy and our{" "}
+        <Link href="/sms-terms">SMS Terms</Link> once it reaches Dealio.
+      </p>
+      <p>
+        You can disable cookies in your browser, although parts of the site
+        and the chat widget may not work as expected.
       </p>
 
       <h2>6. Data retention</h2>
@@ -160,10 +204,21 @@ export default function PrivacyPage() {
         Depending on where you live, you may have rights to access, correct,
         delete, or port your personal information, to opt out of certain
         processing, and to withdraw consent. To exercise any of these rights,
-        email{" "}
-        <a href="mailto:thedealioteam@gmail.com">thedealioteam@gmail.com</a>.
-        We will verify your request and respond within the time frame required
-        by law.
+        contact us using either of the following methods:
+      </p>
+      <ul>
+        <li>
+          Email:{" "}
+          <a href="mailto:thedealioteam@gmail.com">thedealioteam@gmail.com</a>
+        </li>
+        <li>
+          Phone: <a href="tel:+14804158462">(480) 415-8462</a>
+        </li>
+      </ul>
+      <p>
+        You can also write to us at Dealio LLC, 9451 E. Becker Lane,
+        Scottsdale, AZ 85260. We will verify your request and respond
+        within the time frame required by law.
       </p>
       <p>
         California residents have additional rights under the CCPA/CPRA,
@@ -176,9 +231,11 @@ export default function PrivacyPage() {
 
       <h2>8. Children</h2>
       <p>
-        Our services are intended for users 18 and older. We do not knowingly
-        collect personal information from children under 13, and our SMS
-        program is not directed at minors.
+        Our services and SMS program are intended for users 18 and older. We
+        do not knowingly collect personal information from anyone under 18,
+        and our SMS program is not directed at minors. If you believe we
+        have collected information from someone under 18, contact us and we
+        will delete it.
       </p>
 
       <h2>9. Security</h2>
@@ -205,10 +262,18 @@ export default function PrivacyPage() {
 
       <h2>12. Contact us</h2>
       <p>
-        Questions, requests, or complaints? Email{" "}
-        <a href="mailto:thedealioteam@gmail.com">thedealioteam@gmail.com</a>{" "}
-        and we&apos;ll respond promptly.
+        Questions, requests, or complaints? Reach Dealio LLC at:
       </p>
+      <ul>
+        <li>
+          Email:{" "}
+          <a href="mailto:thedealioteam@gmail.com">thedealioteam@gmail.com</a>
+        </li>
+        <li>
+          Phone: <a href="tel:+14804158462">(480) 415-8462</a>
+        </li>
+        <li>Mail: Dealio LLC, 9451 E. Becker Lane, Scottsdale, AZ 85260</li>
+      </ul>
     </LegalPage>
   );
 }

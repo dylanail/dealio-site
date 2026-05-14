@@ -4,7 +4,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Dealio — Better leads. Lower prices. Zero competition.",
-  description: "Pay-per-lead acquisition for home services operators. Real leads, warmed and ready — and never sold to anyone else.",
+  description: "Pay-per-lead acquisition for moving operators. Real leads, warmed and ready — and never sold to anyone else.",
 };
 
 export default function RootLayout({

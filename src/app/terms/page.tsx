@@ -17,9 +17,9 @@ export default function TermsPage() {
     >
       <p>
         These Terms of Service (the &ldquo;Terms&rdquo;) are a binding
-        agreement between you and <strong>Dealio Inc.</strong>{" "}
+        agreement between you and <strong>Dealio LLC</strong>{" "}
         (&ldquo;Dealio,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo; or
-        &ldquo;our&rdquo;) governing your use of the dealio.com website (the
+        &ldquo;our&rdquo;) governing your use of the Dealio website (the
         &ldquo;Site&rdquo;) and any Dealio products or services that link to
         these Terms (collectively, the &ldquo;Services&rdquo;). By using the
         Services you agree to these Terms and to our{" "}
@@ -36,8 +36,9 @@ export default function TermsPage() {
 
       <h2>2. Account &amp; lead-purchase services</h2>
       <p>
-        Dealio sells exclusive, pay-per-lead access to home-services consumer
-        inquiries. Lead pricing, ZIP-code allocation, exclusivity, refund
+        Dealio sells exclusive, pay-per-lead access to moving-services
+        consumer inquiries. Lead pricing, ZIP-code allocation, exclusivity,
+        refund
         eligibility, and billing terms are described in the order form or
         operator agreement you sign with us. The Site itself does not
         constitute an offer to sell leads; lead purchases are governed by your
@@ -143,8 +144,11 @@ export default function TermsPage() {
 
       <h2>12. Contact</h2>
       <p>
-        Dealio Inc. — questions about these Terms can be sent to{" "}
-        <a href="mailto:thedealioteam@gmail.com">thedealioteam@gmail.com</a>.
+        Dealio LLC — questions about these Terms can be sent to{" "}
+        <a href="mailto:thedealioteam@gmail.com">thedealioteam@gmail.com</a>{" "}
+        or by phone at <a href="tel:+14804158462">(480) 415-8462</a>.
+        Mailing address: Dealio LLC, 9451 E. Becker Lane, Scottsdale, AZ
+        85260.
       </p>
     </LegalPage>
   );
