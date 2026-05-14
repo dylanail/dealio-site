@@ -19,7 +19,7 @@ export default function RootLayout({
         <Script
           src="https://widgets.leadconnectorhq.com/loader.js"
           data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
-          data-widget-id="6a03b856ed0c5f76e664e523"
+          data-widget-id="6a05ffd30d6444d9d0c29946"
           data-source="WEB_USER"
           strategy="lazyOnload"
         />
