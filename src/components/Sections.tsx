@@ -275,7 +275,6 @@ export const Footer = () => (
           links={[
             { label: "About", href: "/#about" },
             { label: "Contact", href: "mailto:thedealioteam@gmail.com" },
-            { label: "SMS opt-in", href: "/opt-in" },
           ]}
         />
         <FooterCol
