@@ -85,14 +85,14 @@ export default function SmsTermsPage() {
         receive additional messages from that program. If you want to rejoin,
         text <code>START</code> to the originating number. You may also opt
         out by emailing{" "}
-        <a href="mailto:thedealioteam@gmail.com">thedealioteam@gmail.com</a>.
+        <a href="mailto:hello@trydeal.io">hello@trydeal.io</a>.
       </p>
 
       <h2>5. Help (HELP)</h2>
       <p>
         Reply <code>HELP</code> to any Dealio text message for help. You can
         also email{" "}
-        <a href="mailto:thedealioteam@gmail.com">thedealioteam@gmail.com</a>
+        <a href="mailto:hello@trydeal.io">hello@trydeal.io</a>
         . Our reply will identify Dealio, restate the opt-out instructions,
         and provide a link to these SMS Terms and our Privacy Policy.
       </p>
@@ -141,7 +141,7 @@ export default function SmsTermsPage() {
       <p>
         Dealio LLC — questions or complaints about the SMS program can be
         sent to{" "}
-        <a href="mailto:thedealioteam@gmail.com">thedealioteam@gmail.com</a>{" "}
+        <a href="mailto:hello@trydeal.io">hello@trydeal.io</a>{" "}
         or by phone at{" "}
         <a href="tel:+14804158462">(480) 415-8462</a>. Mailing address:
         Dealio LLC, 9451 E. Becker Lane, Scottsdale, AZ 85260.
@@ -154,7 +154,7 @@ export default function SmsTermsPage() {
         data rates
         may apply · Opt-out: reply <code>STOP</code> · Help: reply{" "}
         <code>HELP</code> or email{" "}
-        <a href="mailto:thedealioteam@gmail.com">thedealioteam@gmail.com</a>{" "}
+        <a href="mailto:hello@trydeal.io">hello@trydeal.io</a>{" "}
         · Carriers are not liable for delayed or undelivered messages · See{" "}
         <Link href="/privacy">Privacy Policy</Link>.
       </div>

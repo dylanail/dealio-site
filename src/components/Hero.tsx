@@ -360,7 +360,7 @@ export const Hero = () => {
             }}
           >
             <Link
-              href="mailto:thedealioteam@gmail.com"
+              href="mailto:hello@trydeal.io"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
@@ -384,7 +384,7 @@ export const Hero = () => {
             >
               EMAIL US
             </Link>
-            <Button variant="primary" size="lg" href="mailto:thedealioteam@gmail.com">
+            <Button variant="primary" size="lg" href="mailto:hello@trydeal.io">
               GET STARTED
             </Button>
           </div>

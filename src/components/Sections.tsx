@@ -128,10 +128,10 @@ export const CTABand = () => (
         <Button
           variant="primary"
           size="lg"
-          href="mailto:thedealioteam@gmail.com"
+          href="mailto:hello@trydeal.io"
           style={{ textTransform: "none", letterSpacing: "-0.005em", fontSize: 15 }}
         >
-          thedealioteam@gmail.com
+          hello@trydeal.io
         </Button>
       </div>
     </div>
@@ -231,7 +231,7 @@ export const Footer = () => (
             warmed and ready — and never sold twice.
           </p>
           <a
-            href="mailto:thedealioteam@gmail.com"
+            href="mailto:hello@trydeal.io"
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -258,7 +258,7 @@ export const Footer = () => (
                 boxShadow: "0 0 10px var(--brand-blue)",
               }}
             />
-            thedealioteam@gmail.com
+            hello@trydeal.io
           </a>
           <address
             style={{
@@ -295,7 +295,7 @@ export const Footer = () => (
           title="Company"
           links={[
             { label: "About", href: "/#about" },
-            { label: "Contact", href: "mailto:thedealioteam@gmail.com" },
+            { label: "Contact", href: "mailto:hello@trydeal.io" },
           ]}
         />
         <FooterCol

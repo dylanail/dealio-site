@@ -127,11 +127,11 @@ export default function TermsPage() {
 
       <h2>10. Governing law</h2>
       <p>
-        These Terms are governed by the laws of the State of Delaware, without
-        regard to its conflict-of-laws rules. The exclusive venue for disputes
-        arising out of or relating to these Terms is the state and federal
-        courts located in Delaware, and you consent to the jurisdiction of
-        those courts.
+        These Terms are governed by the laws of the State of Arizona,
+        without regard to its conflict-of-laws rules. The exclusive venue
+        for disputes arising out of or relating to these Terms is the state
+        and federal courts located in Maricopa County, Arizona, and you
+        consent to the jurisdiction of those courts.
       </p>
 
       <h2>11. Changes</h2>
@@ -145,7 +145,7 @@ export default function TermsPage() {
       <h2>12. Contact</h2>
       <p>
         Dealio LLC — questions about these Terms can be sent to{" "}
-        <a href="mailto:thedealioteam@gmail.com">thedealioteam@gmail.com</a>{" "}
+        <a href="mailto:hello@trydeal.io">hello@trydeal.io</a>{" "}
         or by phone at <a href="tel:+14804158462">(480) 415-8462</a>.
         Mailing address: Dealio LLC, 9451 E. Becker Lane, Scottsdale, AZ
         85260.

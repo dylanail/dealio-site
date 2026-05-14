@@ -156,7 +156,7 @@ export default function PrivacyPage() {
         data rates may apply. Message frequency varies. Reply <code>STOP</code>{" "}
         to any message to opt out, or <code>HELP</code> for help. You can also
         opt out by emailing{" "}
-        <a href="mailto:thedealioteam@gmail.com">thedealioteam@gmail.com</a>.
+        <a href="mailto:hello@trydeal.io">hello@trydeal.io</a>.
       </p>
       <p>
         Phone numbers and SMS consent records collected for the Dealio SMS
@@ -209,7 +209,7 @@ export default function PrivacyPage() {
       <ul>
         <li>
           Email:{" "}
-          <a href="mailto:thedealioteam@gmail.com">thedealioteam@gmail.com</a>
+          <a href="mailto:hello@trydeal.io">hello@trydeal.io</a>
         </li>
         <li>
           Phone: <a href="tel:+14804158462">(480) 415-8462</a>
@@ -267,7 +267,7 @@ export default function PrivacyPage() {
       <ul>
         <li>
           Email:{" "}
-          <a href="mailto:thedealioteam@gmail.com">thedealioteam@gmail.com</a>
+          <a href="mailto:hello@trydeal.io">hello@trydeal.io</a>
         </li>
         <li>
           Phone: <a href="tel:+14804158462">(480) 415-8462</a>
