@@ -128,10 +128,10 @@ export const CTABand = () => (
         <Button
           variant="primary"
           size="lg"
-          href="mailto:thedealioteam@gmail.com"
+          href="mailto:hello@trydeal.io"
           style={{ textTransform: "none", letterSpacing: "-0.005em", fontSize: 15 }}
         >
-          thedealioteam@gmail.com
+          hello@trydeal.io
         </Button>
       </div>
     </div>
@@ -231,7 +231,7 @@ export const Footer = () => (
             warmed and ready — and never sold twice.
           </p>
           <a
-            href="mailto:thedealioteam@gmail.com"
+            href="mailto:hello@trydeal.io"
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -258,8 +258,29 @@ export const Footer = () => (
                 boxShadow: "0 0 10px var(--brand-blue)",
               }}
             />
-            thedealioteam@gmail.com
+            hello@trydeal.io
           </a>
+          <address
+            style={{
+              fontFamily: "var(--font-body)",
+              fontSize: 13,
+              lineHeight: "20px",
+              color: "rgba(255,255,255,0.7)",
+              fontStyle: "normal",
+              marginTop: 8,
+              letterSpacing: "-0.01em",
+            }}
+          >
+            <div style={{ color: "#fff", fontWeight: 500 }}>Dealio LLC</div>
+            <div>9451 E. Becker Lane</div>
+            <div>Scottsdale, AZ 85260</div>
+            <a
+              href="tel:+14804158462"
+              style={{ color: "rgba(255,255,255,0.7)", textDecoration: "none" }}
+            >
+              (480) 415-8462
+            </a>
+          </address>
         </div>
         <FooterCol
           title="Product"
@@ -274,7 +295,7 @@ export const Footer = () => (
           title="Company"
           links={[
             { label: "About", href: "/#about" },
-            { label: "Contact", href: "mailto:thedealioteam@gmail.com" },
+            { label: "Contact", href: "mailto:hello@trydeal.io" },
           ]}
         />
         <FooterCol
@@ -297,7 +318,7 @@ export const Footer = () => (
           color: "rgba(255,255,255,0.5)",
         }}
       >
-        <span>© 2026 Dealio Inc.</span>
+        <span>© 2026 Dealio LLC.</span>
         <span>Built for movers.</span>
       </div>
     </div>

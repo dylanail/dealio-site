@@ -17,7 +17,7 @@ export default function SmsTermsPage() {
     >
       <p>
         These SMS Terms &amp; Conditions (the &ldquo;SMS Terms&rdquo;) govern
-        the text-messaging program operated by <strong>Dealio Inc.</strong>{" "}
+        the text-messaging program operated by <strong>Dealio LLC</strong>{" "}
         (&ldquo;Dealio,&rdquo; &ldquo;we,&rdquo; or &ldquo;us&rdquo;). By
         texting a Dealio keyword or providing your mobile number to Dealio in
         any consent flow, you agree to these SMS Terms.
@@ -29,7 +29,7 @@ export default function SmsTermsPage() {
           <strong>Program name:</strong> Dealio Leads
         </li>
         <li>
-          <strong>Program operator:</strong> Dealio Inc.
+          <strong>Program operator:</strong> Dealio LLC
         </li>
         <li>
           <strong>Purpose:</strong> account onboarding, real-time lead
@@ -63,10 +63,12 @@ export default function SmsTermsPage() {
 
       <h2>3. Message frequency &amp; cost</h2>
       <p>
-        Message frequency varies by activity, typically{" "}
-        <strong>up to four (4) messages per month</strong> for marketing
-        traffic and additional transactional/account messages as needed (for
-        example, a text per lead delivered to operators who have opted in).
+        Message frequency varies by activity. For marketing traffic, you
+        will receive <strong>up to four (4) messages per month</strong>.
+        For transactional and account messages — onboarding, lead-delivery
+        notifications to opted-in operators, billing alerts, customer
+        support replies — you will receive{" "}
+        <strong>up to thirty (30) messages per month</strong>.
       </p>
       <p>
         <strong>Message and data rates may apply.</strong> Your wireless
@@ -83,23 +85,24 @@ export default function SmsTermsPage() {
         receive additional messages from that program. If you want to rejoin,
         text <code>START</code> to the originating number. You may also opt
         out by emailing{" "}
-        <a href="mailto:thedealioteam@gmail.com">thedealioteam@gmail.com</a>.
+        <a href="mailto:hello@trydeal.io">hello@trydeal.io</a>.
       </p>
 
       <h2>5. Help (HELP)</h2>
       <p>
         Reply <code>HELP</code> to any Dealio text message for help. You can
         also email{" "}
-        <a href="mailto:thedealioteam@gmail.com">thedealioteam@gmail.com</a>
+        <a href="mailto:hello@trydeal.io">hello@trydeal.io</a>
         . Our reply will identify Dealio, restate the opt-out instructions,
         and provide a link to these SMS Terms and our Privacy Policy.
       </p>
 
       <h2>6. Supported carriers</h2>
       <p>
-        The Dealio SMS program is supported on major U.S. carriers including
-        AT&amp;T, Verizon Wireless, T-Mobile, Sprint, Boost, Cricket, MetroPCS,
-        U.S. Cellular, Virgin Mobile, and most other Tier-1 and MVNO carriers.{" "}
+        The Dealio SMS program is supported on major U.S. carriers
+        including AT&amp;T, Verizon Wireless, T-Mobile, UScellular, Boost
+        Mobile, Cricket Wireless, Metro by T-Mobile, Google Fi, and most
+        other Tier-1 and MVNO carriers.{" "}
         <strong>Carriers are not liable for delayed or undelivered messages.</strong>
       </p>
 
@@ -136,18 +139,22 @@ export default function SmsTermsPage() {
 
       <h2>10. Contact</h2>
       <p>
-        Dealio Inc. — questions or complaints about the SMS program can be
+        Dealio LLC — questions or complaints about the SMS program can be
         sent to{" "}
-        <a href="mailto:thedealioteam@gmail.com">thedealioteam@gmail.com</a>.
+        <a href="mailto:hello@trydeal.io">hello@trydeal.io</a>{" "}
+        or by phone at{" "}
+        <a href="tel:+14804158462">(480) 415-8462</a>. Mailing address:
+        Dealio LLC, 9451 E. Becker Lane, Scottsdale, AZ 85260.
       </p>
 
       <div className="callout">
         <strong>Summary of required disclosures:</strong> Program: Dealio
-        Leads · Operator: Dealio Inc. · Frequency: msg frequency varies (~4
-        marketing msgs/month, plus transactional) · Cost: msg &amp; data rates
+        Leads · Operator: Dealio LLC · Frequency: up to 4 marketing
+        msgs/month plus up to 30 transactional msgs/month · Cost: msg &amp;
+        data rates
         may apply · Opt-out: reply <code>STOP</code> · Help: reply{" "}
         <code>HELP</code> or email{" "}
-        <a href="mailto:thedealioteam@gmail.com">thedealioteam@gmail.com</a>{" "}
+        <a href="mailto:hello@trydeal.io">hello@trydeal.io</a>{" "}
         · Carriers are not liable for delayed or undelivered messages · See{" "}
         <Link href="/privacy">Privacy Policy</Link>.
       </div>
