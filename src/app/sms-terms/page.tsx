@@ -19,9 +19,8 @@ export default function SmsTermsPage() {
         These SMS Terms &amp; Conditions (the &ldquo;SMS Terms&rdquo;) govern
         the text-messaging program operated by <strong>Dealio Inc.</strong>{" "}
         (&ldquo;Dealio,&rdquo; &ldquo;we,&rdquo; or &ldquo;us&rdquo;). By
-        opting in via our <Link href="/opt-in">opt-in form</Link>, by texting
-        a Dealio keyword, or by providing your mobile number to Dealio in any
-        other consent flow, you agree to these SMS Terms.
+        texting a Dealio keyword or providing your mobile number to Dealio in
+        any consent flow, you agree to these SMS Terms.
       </p>
 
       <h2>1. Program description</h2>
@@ -48,11 +47,10 @@ export default function SmsTermsPage() {
       <p>
         You agree to receive recurring SMS text messages from Dealio at the
         mobile number you provided. <strong>Consent is not a condition</strong>{" "}
-        of any purchase. We obtain your consent through an unchecked checkbox
-        on our opt-in page, by you texting <code>START</code> or{" "}
-        <code>YES</code> to a Dealio short code or long code, or by an
-        equivalent verifiable opt-in flow that displays these SMS Terms and
-        our <Link href="/privacy">Privacy Policy</Link>.
+        of any purchase. We obtain your consent by you texting{" "}
+        <code>START</code> or <code>YES</code> to a Dealio short code or long
+        code, or through an equivalent verifiable opt-in flow that displays
+        these SMS Terms and our <Link href="/privacy">Privacy Policy</Link>.
       </p>
       <p>
         We retain a record of your opt-in, including the exact consent
@@ -83,9 +81,8 @@ export default function SmsTermsPage() {
         any message you receive from Dealio. After you send <code>STOP</code>,
         we&apos;ll send you one final confirmation message and you will not
         receive additional messages from that program. If you want to rejoin,
-        sign up again on our <Link href="/opt-in">opt-in page</Link> or text{" "}
-        <code>START</code> to the originating number. You may also opt out by
-        emailing{" "}
+        text <code>START</code> to the originating number. You may also opt
+        out by emailing{" "}
         <a href="mailto:thedealioteam@gmail.com">thedealioteam@gmail.com</a>.
       </p>
 
