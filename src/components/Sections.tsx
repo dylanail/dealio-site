@@ -260,6 +260,27 @@ export const Footer = () => (
             />
             thedealioteam@gmail.com
           </a>
+          <address
+            style={{
+              fontFamily: "var(--font-body)",
+              fontSize: 13,
+              lineHeight: "20px",
+              color: "rgba(255,255,255,0.7)",
+              fontStyle: "normal",
+              marginTop: 8,
+              letterSpacing: "-0.01em",
+            }}
+          >
+            <div style={{ color: "#fff", fontWeight: 500 }}>Dealio LLC</div>
+            <div>9451 E. Becker Lane</div>
+            <div>Scottsdale, AZ 85260</div>
+            <a
+              href="tel:+14804158462"
+              style={{ color: "rgba(255,255,255,0.7)", textDecoration: "none" }}
+            >
+              (480) 415-8462
+            </a>
+          </address>
         </div>
         <FooterCol
           title="Product"
@@ -297,7 +318,7 @@ export const Footer = () => (
           color: "rgba(255,255,255,0.5)",
         }}
       >
-        <span>© 2026 Dealio Inc.</span>
+        <span>© 2026 Dealio LLC.</span>
         <span>Built for movers.</span>
       </div>
     </div>
